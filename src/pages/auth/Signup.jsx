@@ -37,7 +37,7 @@ function Signup() {
     }
 
     try {
-      //! Esto sería como llamar a http://localhost:5005/api/auth/signup y pasarle el objeto usuario que acabamos de creaar.
+      //! Esto sería como llamar a http://localhost:5005/api/auth/signup y pasarle el objeto usuario que acabamos de crear.
       await signupService(newUser)
       console.log("Usuario registrado.");
       navigate("/login")
