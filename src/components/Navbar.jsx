@@ -4,7 +4,12 @@ import { AuthContext } from '../context/auth.context'
 
 function Navbar() {
 
-  const { isLoggedIn, user } = useContext(AuthContext)
+  const { isLoggedIn, user, authenticateUser } = useContext(AuthContext)
+
+  const handleLogout = () => {
+    localStorage.removeItem("authToken")
+    authenticateUser()
+  }
 
   return (
     <div>
@@ -17,7 +22,7 @@ function Navbar() {
         <NavLink to={"/videogames"}> Videogames </NavLink>
         <NavLink to={"/profile"}> Profile </NavLink>
         <NavLink to={"/collections"}> Collections </NavLink>
-        <NavLink to={"/logout"}> Log Out </NavLink>
+        <button onClick={handleLogout}> Log Out </button>
       </nav>
     ) : (
       <nav>
