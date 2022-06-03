@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { loginService } from "../../services/auth.services";
 
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/auth.context.js"
 
 function Login() {
+
+  const { authenticateUser } = useContext(AuthContext)
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -34,10 +37,11 @@ function Login() {
         const response = await loginService(user)
         // console.log("usuario validado", response.data)
         // guardamos el token en localStorage
+        // localStorage es el lugar local donde se guarda la informacion y setItem el método interno para acceder al localStorage y guardar información.
         localStorage.setItem("authToken", response.data.authToken)
-        // authenticateUser()
+        authenticateUser()
         //asignar los valores a los estados globales para manejo en 
-        // navigate("/videogames")
+        navigate("/profile")
 
       } catch (error) {
 
