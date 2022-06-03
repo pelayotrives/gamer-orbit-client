@@ -1,4 +1,3 @@
-import axios from "axios";
 import service from "./config.services";
 
 //* Creamos un servicio que busca todos los archivos de acceso y registro de la base de datos.

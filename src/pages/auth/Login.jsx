@@ -45,7 +45,7 @@ function Login() {
 
       } catch (error) {
 
-        if (error.response.status === 400 || error.response.status === 40) {
+        if (error.response.status === 400 || error.response.status === 401) {
           setErrorMessage(error.response.data.errorMessage)
         } else {
           // navigate
