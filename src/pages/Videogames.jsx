@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import PacmanLoader from "react-spinners/PacmanLoader";
+import PulseLoader from "react-spinners/PulseLoader";
 import axios from "axios";
 import { listGamesService } from "../services/games.services";
 
@@ -37,7 +37,12 @@ function Videogames() {
 
   //! 4. Crear efecto de Loading.
   if (allGames === null) {
-    return <PacmanLoader color={"rgb(0,0,0)"} />;
+    return (
+      <>
+      <h4>Cargando...</h4>
+      <PulseLoader color={"rgb(0,0,0)"} />
+      </>
+    );
   }
 
   // ************************ RENDER ************************
@@ -47,7 +52,11 @@ function Videogames() {
       {allGames.results.map((eachGame) => {
         return (
           <div key={eachGame.id}>
-            <p>{eachGame.name}</p>
+            <img src={eachGame.background_image} width={300} alt="" />
+            <h3>{eachGame.name}</h3>
+            <h4>{eachGame.released}</h4>
+            <h5>{eachGame.rating}</h5>            
+            <hr />
           </div>
         );
       })}
