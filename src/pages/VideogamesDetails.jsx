@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import PulseLoader from "react-spinners/PulseLoader";
-import { listGamesDetailsService, listGamesTrailersService } from "../services/games.services";
+import {
+  listGamesDetailsService,
+  listGamesTrailersService,
+} from "../services/games.services";
 
 // Hemos instalado Markup de Interweave con npm i interweave. Convierte strings de html en strings jsx.
 import { Markup } from "interweave";
@@ -17,12 +20,9 @@ function VideogamesDetails() {
   const [gameTrailer, setGameTrailers] = useState(null);
 
   //! 2. Acceder al componentDidMount
+  // TODO ---> componentDidMount para los trailers debajo
   useEffect(() => {
     getVideogamesDetails();
-  }, []);
-
-  // TODO ---> componentDidMount para los trailers
-  useEffect(() => {
     getVideogamesTrailers();
   }, []);
 
@@ -44,14 +44,13 @@ function VideogamesDetails() {
   // TODO ---> Función de comunicación con la API para los trailers
   const getVideogamesTrailers = async () => {
     try {
-      const response = await listGamesTrailersService(id)
-      setGameTrailers(response.data)
+      const response = await listGamesTrailersService(id);
+      setGameTrailers(response.data);
       console.log("Trailers and bullshit:", response.data);
+    } catch (error) {
+      navigate("/error");
     }
-    catch (error) {
-      navigate("/error")
-    }
-  }
+  };
 
   //! 4. Crear efecto de Loading.
   if (gameDetails === null) {
@@ -61,7 +60,7 @@ function VideogamesDetails() {
         <PulseLoader color={"rgb(0,0,0)"} />
       </>
     );
-  // TODO ---> Lo mismo pero para los trailers
+    // TODO ---> Lo mismo pero para los trailers
   } else if (gameTrailer === null) {
     return (
       <>
@@ -73,6 +72,7 @@ function VideogamesDetails() {
 
   return (
     <div>
+      {console.log("Cesar", gameTrailer)}
       <h3>Detalles del Videojuego</h3>
       <hr />
 
@@ -148,15 +148,16 @@ function VideogamesDetails() {
 
         {/* Trailers del juego (vienen en array) */}
         {gameTrailer.results.length !== 0 &&
-          gameDetails.results.map((eachTrailer) => {
+          gameTrailer.results.map((eachTrailer) => {
             return (
-              <div>
+              <div key={eachTrailer.id}>
                 <h3>Trailers</h3>
-                <video src={eachTrailer.data.max}></video>
+                <video width={900} controls src={eachTrailer.data.max} />
+
+                {/* <source src={eachTrailer.data.max} type="video/mp4" /> */}
               </div>
             );
           })}
-
       </div>
     </div>
   );

@@ -15,7 +15,7 @@ const listGamesDetailsService = (id) => {
 
 const listGamesTrailersService = (id) => {
     console.log("Working trailers.");
-    return service.get(`/videogames/${id}/details`)
+    return service.get(`/videogames/${id}/trailers`)
 }
 
 export {
