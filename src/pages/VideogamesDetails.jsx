@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import PulseLoader from "react-spinners/PulseLoader";
-import { listGamesDetailsService } from "../services/games.services";
+import { listGamesDetailsService, listGamesTrailersService } from "../services/games.services";
+
+// Hemos instalado Markup de Interweave con npm i interweave. Convierte strings de html en strings jsx.
+import { Markup } from "interweave";
 
 function VideogamesDetails() {
   const { id } = useParams();
@@ -10,10 +13,17 @@ function VideogamesDetails() {
   // Llamar a la API
   //! 1. Estados
   const [gameDetails, setGameDetails] = useState(null);
+  // TODO ---> Estado para los trailers
+  const [gameTrailer, setGameTrailers] = useState(null);
 
   //! 2. Acceder al componentDidMount
   useEffect(() => {
     getVideogamesDetails();
+  }, []);
+
+  // TODO ---> componentDidMount para los trailers
+  useEffect(() => {
+    getVideogamesTrailers();
   }, []);
 
   //! 3. Función que llama a la API y se comunica con componentDidMount
@@ -26,14 +36,33 @@ function VideogamesDetails() {
       // 2. Actualizamos el estado con la respuesta de la API.
       setGameDetails(response.data);
       console.log("response.data", response.data);
-      console.log("gameDetails", gameDetails);
     } catch (error) {
       navigate("/error");
     }
   };
 
+  // TODO ---> Función de comunicación con la API para los trailers
+  const getVideogamesTrailers = async () => {
+    try {
+      const response = await listGamesTrailersService(id)
+      setGameTrailers(response.data)
+      console.log("Trailers and bullshit:", response.data);
+    }
+    catch (error) {
+      navigate("/error")
+    }
+  }
+
   //! 4. Crear efecto de Loading.
   if (gameDetails === null) {
+    return (
+      <>
+        <h4>Cargando...</h4>
+        <PulseLoader color={"rgb(0,0,0)"} />
+      </>
+    );
+  // TODO ---> Lo mismo pero para los trailers
+  } else if (gameTrailer === null) {
     return (
       <>
         <h4>Cargando...</h4>
@@ -45,11 +74,89 @@ function VideogamesDetails() {
   return (
     <div>
       <h3>Detalles del Videojuego</h3>
+      <hr />
 
       <div key={gameDetails.id}>
-        <p>{gameDetails.name}</p>
-        <br />
-        <img src={gameDetails.reddit_logo} alt="Game" />
+        {/* Imagen del juego */}
+        <img src={gameDetails.background_image} width={900} alt="Cover" />
+        {/* <img
+          src={gameDetails.background_image_additional}
+          width={900}
+          alt="Cover"
+        /> */}
+
+        {/* Nombre del juego */}
+        <h1>{gameDetails.name}</h1>
+
+        {/* Nombres alternativos del juego que vienen en array */}
+        {gameDetails.alternative_names.length !== 0 &&
+          gameDetails.alternative_names.map((eachTitle) => {
+            return (
+              <div>
+                <h3>Nombres alternativos:</h3>
+                <p>{eachTitle}</p>
+              </div>
+            );
+          })}
+
+        <h3>Desarrollador(es):</h3>
+        {/* Desarrolladores del juego (vienen en array.) */}
+        {gameDetails.publishers.length !== 0 &&
+          gameDetails.publishers.map((eachPublisher) => {
+            return (
+              <div>
+                <p>{eachPublisher.name}</p>
+              </div>
+            );
+          })}
+
+        <h3>Fecha de salida:</h3>
+        {/* Fecha de release. */}
+        <p>{gameDetails.released}</p>
+
+        <h3>Género(s):</h3>
+        {/* Géneros del juego que vienen en array */}
+        {gameDetails.genres.length !== 0 &&
+          gameDetails.genres.map((eachGenre) => {
+            return (
+              <div>
+                <p>{eachGenre.name}</p>
+              </div>
+            );
+          })}
+
+        <h3>Consola(s):</h3>
+        {/* Consolas en las que el juego está disponible (vienen en array de array) */}
+        {gameDetails.platforms.length !== 0 &&
+          gameDetails.platforms.map((eachPlatform) => {
+            return (
+              <div>
+                <p>{eachPlatform.platform.name}</p>
+              </div>
+            );
+          })}
+
+        <button>
+          <a href={gameDetails.website}>Ir a website</a>
+        </button>
+
+        <h3>Descripción:</h3>
+        {/* Descripción del juego */}
+        <Markup content={gameDetails.description} />
+
+        {/* ------------------------------------ */}
+
+        {/* Trailers del juego (vienen en array) */}
+        {gameTrailer.results.length !== 0 &&
+          gameDetails.results.map((eachTrailer) => {
+            return (
+              <div>
+                <h3>Trailers</h3>
+                <video src={eachTrailer.data.max}></video>
+              </div>
+            );
+          })}
+
       </div>
     </div>
   );

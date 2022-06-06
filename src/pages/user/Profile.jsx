@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { NavLink, useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { useNavigate } from 'react-router-dom'
 import { listProfileService } from '../../services/profile.services'
 import { PulseLoader } from 'react-spinners/PulseLoader'
@@ -41,8 +41,12 @@ function Profile() {
         <h1>¡Bienvenid@ de nuevo, {user.username}!</h1>
         <h4>Tu username actual es {user.username}</h4>
         <h4>Tu email actual es {user.email}</h4>
-        <h6>Sobre mi: {user.aboutme}</h6>
-        <button><NavLink to={`/profile/${user._id}/edit`}> Editar perfil </NavLink></button>
+        <h5>Ciudad: {user.city}</h5>
+        <h5>País: {user.country}</h5>
+        <h5>Género: {user.genre}</h5>
+        <h5>Dirección: {user.address}</h5>
+        <h5>Sobre mí: {user.aboutme}</h5>
+        <button><Link to={`/profile/${user._id}/edit`}> Editar perfil </Link></button>
       </div>
     </div>
   )

@@ -13,7 +13,13 @@ const listGamesDetailsService = (id) => {
     return service.get(`/videogames/${id}/details`)
 }
 
+const listGamesTrailersService = (id) => {
+    console.log("Working trailers.");
+    return service.get(`/videogames/${id}/details`)
+}
+
 export {
     listGamesService,
-    listGamesDetailsService
+    listGamesDetailsService,
+    listGamesTrailersService
 }
