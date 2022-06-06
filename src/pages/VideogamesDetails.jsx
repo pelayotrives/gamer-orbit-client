@@ -85,6 +85,19 @@ function VideogamesDetails() {
           alt="Cover"
         /> */}
 
+        {/* Formulario para añadir el juego a colecciones (conexión con User.Model) */}
+        <form>
+          <br />
+          <select name="select" id="">
+            <option value="">Owned games</option>
+            <option value="">Wished games</option>
+            <option value="">Finished games</option>
+            <option value="">Currently playing games</option>
+          </select> 
+          <br /> <br />
+          <button>Submit</button>
+        </form>
+
         {/* Nombre del juego */}
         <h1>{gameDetails.name}</h1>
 
