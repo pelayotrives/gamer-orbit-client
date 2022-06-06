@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import PulseLoader from "react-spinners/PulseLoader";
 import axios from "axios";
 import { listGamesService } from "../services/games.services";
@@ -53,7 +53,7 @@ function Videogames() {
         return (
           <div key={eachGame.id}>
             <img src={eachGame.background_image} width={300} alt="" />
-            <h3>{eachGame.name}</h3>
+            <h3><Link to={`/videogames/${eachGame.id}/details`}>{eachGame.name}</Link></h3>
             <h4>{eachGame.released}</h4>
             <h5>{eachGame.rating}</h5>            
             <hr />

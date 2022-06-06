@@ -2,7 +2,7 @@ import './App.css'
 import Home from './pages/Home';
 import { Routes, Route } from "react-router-dom"
 import Videogames from './pages/Videogames';
-import VideogamesDetails from './pages/Videogames';
+import VideogamesDetails from './pages/VideogamesDetails';
 import Profile from './pages/user/Profile';
 import Collections from './pages/user/Collections';
 import ProfileEdit from './pages/user/ProfileEdit';
@@ -23,7 +23,7 @@ function App() {
       <Route path={"/videogames"} element={ <Videogames/> } />
       <Route path={"/videogames/:id/details"} element={ <VideogamesDetails/> } />
       <Route path={"/profile"} element={ <Profile/> } />
-      <Route path={"/profile/edit"} element={ <ProfileEdit/> } />
+      <Route path={"/profile/:id/edit"} element={ <ProfileEdit/> } />
       <Route path={"/collections"} element={ <Collections/> } />
       <Route path={"/signup"} element={ <Signup/> } />
       <Route path={"/login"} element={ <Login/> } />
