@@ -7,7 +7,15 @@ const listProfileService = () => {
     return service.get("/profile")
 }
 
+const profileEditService = (_id, profile) => {
+    console.log("Working profile edit.");
+    return service.patch(`/profile/${_id}/edit`, profile)
+}
+
+
+
 
 export {
-    listProfileService
+    listProfileService,
+    profileEditService
 }
