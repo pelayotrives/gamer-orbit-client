@@ -1,14 +1,17 @@
 import React, { useContext } from 'react'
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import { AuthContext } from '../context/auth.context'
 
 function Navbar() {
 
   const { isLoggedIn, user, authenticateUser } = useContext(AuthContext)
+  const navigate = useNavigate()
 
   const handleLogout = () => {
     localStorage.removeItem("authToken")
     authenticateUser()
+    // Para cuando haga logout, que se salga de la página de perfil.
+    navigate("/")
   }
 
   return (
