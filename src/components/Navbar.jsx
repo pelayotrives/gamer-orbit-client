@@ -14,7 +14,7 @@ function Navbar() {
   return (
     <div>
 
-    { user !== null && <p>Bienvenido: {user.username}</p>}
+    {/* { user !== null && <p>Bienvenido: {user.username}</p>} */}
 
     { isLoggedIn === true ? (
       <nav>
@@ -23,6 +23,7 @@ function Navbar() {
         <NavLink to={"/profile"}> Profile </NavLink>
         <NavLink to={"/collections"}> Collections </NavLink>
         <button onClick={handleLogout}> Log Out </button>
+        <br /><br />
       </nav>
     ) : (
       <nav>
@@ -30,6 +31,7 @@ function Navbar() {
         <NavLink to={"/videogames"}> Videogames </NavLink>
         <NavLink to={"/signup"}> Sign Up </NavLink>
         <NavLink to={"/login"}> Log In </NavLink>
+        <br /><br />
       </nav>
     )} 
     
