@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import PulseLoader from "react-spinners/PulseLoader";
+import { AuthContext } from '../context/auth.context'
 import {
   listGamesDbService,
   listGamesDetailsService,
@@ -12,6 +13,7 @@ import { Markup } from "interweave";
 import Comments from "../components/Comments";
 
 function VideogamesDetails() {
+  const { isLoggedIn } = useContext(AuthContext)
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -97,7 +99,7 @@ function VideogamesDetails() {
 
   return (
     <div>
-      {console.log("Cesar", gameTrailer)}
+      {console.log("Información de trailer:", gameTrailer)}
       <h3>Detalles del Videojuego</h3>
       <hr />
 
@@ -111,6 +113,7 @@ function VideogamesDetails() {
         /> */}
 
         {/* Formulario para añadir el juego a colecciones (conexión con User.Model) */}
+        { isLoggedIn === true &&
         <form onSubmit={handleSubmit}>
           <br />
           <select name="select" onChange={handleStatusChange}>
@@ -121,7 +124,7 @@ function VideogamesDetails() {
           </select>
           <br /> <br />
           <button type="submit">Submit</button>
-        </form>
+        </form> }
 
         {/* Nombre del juego */}
         <h1>{gameDetails.name}</h1>
