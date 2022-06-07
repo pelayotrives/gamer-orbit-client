@@ -10,21 +10,24 @@ import Signup from './pages/auth/Signup';
 import Login from './pages/auth/Login';
 import Error from './pages/error/Error';
 import NotFound from './pages/error/NotFound';
+
+// Componentes
 import Navbar from './components/Navbar';
+import IsPrivate from './components/IsPrivate';
 
 function App() {
   return (
     <div className="App">
 
-    <Navbar/>
+    <Navbar/> 
 
     <Routes>
       <Route path={"/"} element={ <Home/> } />
       <Route path={"/videogames"} element={ <Videogames/> } />
       <Route path={"/videogames/:id/details"} element={ <VideogamesDetails/> } />
-      <Route path={"/profile"} element={ <Profile/> } />
-      <Route path={"/profile/:id/edit"} element={ <ProfileEdit/> } />
-      <Route path={"/videogames/:id/collections"} element={ <Collections/> } />
+      <Route path={"/profile"} element={ <IsPrivate> <Profile/> </IsPrivate> } />
+      <Route path={"/profile/:id/edit"} element={ <IsPrivate> <ProfileEdit/> </IsPrivate> } />
+      <Route path={"/videogames/:id/collections"} element={ <IsPrivate> <Collections/> </IsPrivate>} />
       <Route path={"/signup"} element={ <Signup/> } />
       <Route path={"/login"} element={ <Login/> } />
 
