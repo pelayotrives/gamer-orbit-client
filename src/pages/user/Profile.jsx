@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from "react-router-dom"
 import { useNavigate } from 'react-router-dom'
-import { listProfileService } from '../../services/profile.services'
+import { listProfileService, profileDeleteService } from '../../services/profile.services'
 import { PulseLoader } from 'react-spinners/PulseLoader'
 
 function Profile() {
@@ -35,6 +35,24 @@ function Profile() {
     );
   }
 
+  //! ******** Handle del delete del profile ********
+
+  const handleDelete = async () => {
+
+    try {
+      await profileDeleteService(_id)
+      localStorage.removeItem("authToken")
+      navigate("/")
+    }
+    catch (error) {
+      navigate("/error")
+    }
+
+  }
+
+  //! ******** ------------------------------ ********
+
+
   return (
     <div>
       <div>
@@ -47,7 +65,7 @@ function Profile() {
         <h5>Address: {user.address}</h5>
         <h5>About me: {user.aboutme}</h5>
         <button><Link to={`/profile/${user._id}/edit`}> Edit profile </Link></button>
-        <button> Delete profile </button>
+        <button onClick={handleDelete}> Delete profile </button>
       </div>
     </div>
   )

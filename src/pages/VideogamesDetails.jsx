@@ -9,6 +9,7 @@ import {
 
 // Hemos instalado Markup de Interweave con npm i interweave. Convierte strings de html en strings jsx.
 import { Markup } from "interweave";
+import Comments from "../components/Comments";
 
 function VideogamesDetails() {
   const { id } = useParams();
@@ -19,12 +20,12 @@ function VideogamesDetails() {
   const [gameDetails, setGameDetails] = useState(null);
   // TODO ---> Estado para los trailers
   const [gameTrailer, setGameTrailers] = useState(null);
-  const [status, setStatus] = useState("isOwned")
+  const [status, setStatus] = useState("isOwned");
 
   const handleStatusChange = (event) => {
-    setStatus(event.target.value)
-    console.log(event.target.value)
-  }
+    setStatus(event.target.value);
+    console.log(event.target.value);
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -33,15 +34,15 @@ function VideogamesDetails() {
       const dbDetails = {
         gameApiId: id,
         title: gameDetails.name,
-        status
-      }
+        status,
+      };
 
-      await listGamesDbService(id, dbDetails)
-      navigate(`/videogames/${id}/collections`)
+      await listGamesDbService(id, dbDetails);
+      navigate(`/videogames/${id}/collections`);
     } catch (error) {
-      navigate ("/error")
+      navigate("/error");
     }
-  }
+  };
 
   //! 2. Acceder al componentDidMount
   // TODO ---> componentDidMount para los trailers debajo
@@ -110,14 +111,14 @@ function VideogamesDetails() {
         /> */}
 
         {/* Formulario para añadir el juego a colecciones (conexión con User.Model) */}
-        <form onSubmit={handleSubmit} > 
+        <form onSubmit={handleSubmit}>
           <br />
           <select name="select" onChange={handleStatusChange}>
             <option value={"isOwned"}>Owned games</option>
             <option value={"isWished"}>Wished games</option>
             <option value={"isFinished"}>Finished games</option>
             <option value={"isPlaying"}>Currently playing games</option>
-          </select> 
+          </select>
           <br /> <br />
           <button type="submit">Submit</button>
         </form>
@@ -196,6 +197,10 @@ function VideogamesDetails() {
             );
           })}
       </div>
+        <div>
+          <h4>Comments:</h4> 
+          <Comments />
+        </div>
     </div>
   );
 }

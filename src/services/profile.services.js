@@ -12,10 +12,15 @@ const profileEditService = (_id, profile) => {
     return service.patch(`/profile/${_id}/edit`, profile)
 }
 
-
+//! Función para ruta DELETE donde eliminamos los usuarios.
+const profileDeleteService = (_id) => {
+    console.log("Working profile delete.");
+    return service.delete(`/profile/${_id}`)
+}
 
 
 export {
     listProfileService,
-    profileEditService
+    profileEditService,
+    profileDeleteService
 }
