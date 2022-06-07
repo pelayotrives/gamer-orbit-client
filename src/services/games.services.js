@@ -23,9 +23,21 @@ const listGamesDbService = (id, body) => {
     return service.post(`/videogames/${id}/collections`, body)
 }
 
+const commentsService = (id, body) => {
+    console.log("Working adding comment");
+    return service.post(`/videogames/${id}/comments`, body)
+}
+
+const viewCommentsService = (id) => {
+    console.log("Working comments");
+    return service.get(`/videogames/${id}/comments`)
+}
+
 export {
     listGamesService,
     listGamesDetailsService,
     listGamesTrailersService,
-    listGamesDbService
+    listGamesDbService,
+    commentsService,
+    viewCommentsService
 }
