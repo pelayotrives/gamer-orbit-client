@@ -24,7 +24,7 @@ function App() {
       <Route path={"/videogames/:id/details"} element={ <VideogamesDetails/> } />
       <Route path={"/profile"} element={ <Profile/> } />
       <Route path={"/profile/:id/edit"} element={ <ProfileEdit/> } />
-      <Route path={"/collections"} element={ <Collections/> } />
+      <Route path={"/videogames/:id/collections"} element={ <Collections/> } />
       <Route path={"/signup"} element={ <Signup/> } />
       <Route path={"/login"} element={ <Login/> } />
 

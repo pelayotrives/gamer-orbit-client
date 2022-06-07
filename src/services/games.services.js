@@ -18,8 +18,14 @@ const listGamesTrailersService = (id) => {
     return service.get(`/videogames/${id}/trailers`)
 }
 
+const listGamesDbService = (id, body) => {
+    console.log("Working collections.");
+    return service.post(`/videogames/${id}/collections`, body)
+}
+
 export {
     listGamesService,
     listGamesDetailsService,
-    listGamesTrailersService
+    listGamesTrailersService,
+    listGamesDbService
 }

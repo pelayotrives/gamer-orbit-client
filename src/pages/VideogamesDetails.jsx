@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import PulseLoader from "react-spinners/PulseLoader";
 import {
+  listGamesDbService,
   listGamesDetailsService,
   listGamesTrailersService,
 } from "../services/games.services";
@@ -18,6 +19,29 @@ function VideogamesDetails() {
   const [gameDetails, setGameDetails] = useState(null);
   // TODO ---> Estado para los trailers
   const [gameTrailer, setGameTrailers] = useState(null);
+  const [status, setStatus] = useState("isOwned")
+
+  const handleStatusChange = (event) => {
+    setStatus(event.target.value)
+    console.log(event.target.value)
+  }
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const dbDetails = {
+        gameApiId: id,
+        title: gameDetails.name,
+        status
+      }
+
+      await listGamesDbService(id, dbDetails)
+      navigate(`/videogames/${id}/collections`)
+    } catch (error) {
+      navigate ("/error")
+    }
+  }
 
   //! 2. Acceder al componentDidMount
   // TODO ---> componentDidMount para los trailers debajo
@@ -86,16 +110,16 @@ function VideogamesDetails() {
         /> */}
 
         {/* Formulario para añadir el juego a colecciones (conexión con User.Model) */}
-        <form>
+        <form onSubmit={handleSubmit} > 
           <br />
-          <select name="select" id="">
-            <option value="">Owned games</option>
-            <option value="">Wished games</option>
-            <option value="">Finished games</option>
-            <option value="">Currently playing games</option>
+          <select name="select" onChange={handleStatusChange}>
+            <option value={"isOwned"}>Owned games</option>
+            <option value={"isWished"}>Wished games</option>
+            <option value={"isFinished"}>Finished games</option>
+            <option value={"isPlaying"}>Currently playing games</option>
           </select> 
           <br /> <br />
-          <button>Submit</button>
+          <button type="submit">Submit</button>
         </form>
 
         {/* Nombre del juego */}
