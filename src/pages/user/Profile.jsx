@@ -38,15 +38,16 @@ function Profile() {
   return (
     <div>
       <div>
-        <h1>¡Bienvenid@ de nuevo, {user.username}!</h1>
-        <h4>Tu username actual es {user.username}</h4>
-        <h4>Tu email actual es {user.email}</h4>
-        <h5>Ciudad: {user.city}</h5>
-        <h5>País: {user.country}</h5>
-        <h5>Género: {user.genre}</h5>
-        <h5>Dirección: {user.address}</h5>
-        <h5>Sobre mí: {user.aboutme}</h5>
-        <button><Link to={`/profile/${user._id}/edit`}> Editar perfil </Link></button>
+        <h1>¡Welcome again!</h1>
+        <h4>Your username is {user.username}</h4>
+        <h4>Your email is {user.email}</h4>
+        <h5>City: {user.city}</h5>
+        <h5>Country: {user.country}</h5>
+        <h5>Genre: {user.genre}</h5>
+        <h5>Address: {user.address}</h5>
+        <h5>About me: {user.aboutme}</h5>
+        <button><Link to={`/profile/${user._id}/edit`}> Edit profile </Link></button>
+        <button> Delete profile </button>
       </div>
     </div>
   )
