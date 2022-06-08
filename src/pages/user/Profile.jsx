@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from "react-router-dom"
+import { Link, useLocation, useParams } from "react-router-dom"
 import { useNavigate } from 'react-router-dom'
 import { listProfileService, profileDeleteService } from '../../services/profile.services'
 import { PulseLoader } from 'react-spinners/PulseLoader'

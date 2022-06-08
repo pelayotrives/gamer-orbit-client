@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import { NavLink, useNavigate } from "react-router-dom"
+import React, { useContext, useEffect } from 'react'
+import { NavLink, useLocation, useNavigate } from "react-router-dom"
 import { AuthContext } from '../context/auth.context'
 
 function Navbar() {
@@ -24,7 +24,7 @@ function Navbar() {
         <NavLink to={"/"}> Home </NavLink>
         <NavLink to={"/videogames"}> Videogames </NavLink>
         <NavLink to={"/profile"}> Profile </NavLink>
-        <NavLink to={"/collections"}> Collections </NavLink>
+        <NavLink to={"videogames/:id/collections"}> Collections </NavLink>
         <button onClick={handleLogout}> Log Out </button>
         <br /><br />
       </nav>
