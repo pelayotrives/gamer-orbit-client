@@ -39,7 +39,8 @@ function Login() {
         // guardamos el token en localStorage
         // localStorage es el lugar local donde se guarda la informacion y setItem el método interno para acceder al localStorage y guardar información.
         localStorage.setItem("authToken", response.data.authToken)
-        authenticateUser()
+        // después de retornar el isLoggedIn en auth.context.js hay que ponerle un await  a authenticateUser()
+        await authenticateUser()
         //asignar los valores a los estados globales para manejo en 
         navigate("/profile")
 
