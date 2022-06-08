@@ -115,7 +115,7 @@ function VideogamesDetails() {
       {/* {console.log("Información de trailer:", gameTrailer)} */}
 
       <div id="category">
-        <h1>Detalles del Videojuego</h1>
+        <h1>{gameDetails.name} details</h1>
       </div>
 
       <div id="image-game">
