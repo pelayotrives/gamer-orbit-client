@@ -21,7 +21,6 @@ function AuthWrapper(props) {
             setUser(response.data) 
             // El isLoggedIn se queda como en un segundo plano, y hay que retornarlo una vez cambiado su estado, para que lo coja.
             return isLoggedIn
-            console.log(isLoggedIn)
         } catch (error) {
             console.log("El usuario no tiene token válido.")
             setUser(null)
