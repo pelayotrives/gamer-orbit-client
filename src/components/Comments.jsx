@@ -41,9 +41,10 @@ function Comments() {
                 renderComments.map((each) => {
                     return (
                         <div>
+                            <br />
                             <hr />
-                                <p><strong>{each.usernameId.username.toUpperCase()}</strong></p>
-                                <p>{each.createdAt}</p>
+                                <p><span>Created on <strong>{each.createdAt.slice(0,10)}</strong></span> at <span><strong>{each.createdAt.slice(11,19)}</strong></span></p>
+                                <p>User <strong>{each.usernameId.username.toUpperCase()}</strong> says:</p>
                                 <p>{each.comment}</p>
                             <hr />
                         </div>

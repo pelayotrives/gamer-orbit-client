@@ -111,11 +111,14 @@ function VideogamesDetails() {
 
   return (
     <div>
-      {console.log("Información de trailer:", gameTrailer)}
-      <h3>Detalles del Videojuego</h3>
-      <hr />
 
-      <div key={gameDetails.id}>
+      {/* {console.log("Información de trailer:", gameTrailer)} */}
+
+      <div id="category">
+        <h1>Detalles del Videojuego</h1>
+      </div>
+
+      <div id="image-game">
         {/* Imagen del juego */}
         <img src={gameDetails.background_image} width={900} alt="Cover" />
         {/* <img
@@ -123,7 +126,9 @@ function VideogamesDetails() {
           width={900}
           alt="Cover"
         /> */}
+      </div>
 
+      <div id="select-form">
         {/* Formulario para añadir el juego a colecciones (conexión con User.Model) */}
         { isLoggedIn === true &&
         <form onSubmit={handleSubmit}>
@@ -137,19 +142,28 @@ function VideogamesDetails() {
           <br /> <br />
           <button type="submit">Submit</button>
         </form> }
+      </div>
 
+      <div id="star-component">
+        <br />
         <StarRating />
+      </div>
 
         {/* Nombre del juego */}
-        
-        <h1>{gameDetails.name}</h1>
 
+      <div id="game-title"> 
+        <h2>{gameDetails.name}</h2>
+      </div>
+      
+      <div id="alternative-game-titles-head">
         { gameDetails.alternative_names.length !== 0 &&
             <>
             <h3>Nombres alternativos:</h3>
             </>
         }
+      </div>
 
+      <div id="alternative-game-titles-content">
         {/* Nombres alternativos del juego que vienen en array */}
         {gameDetails.alternative_names.length !== 0 &&
           gameDetails.alternative_names.map((eachTitle) => {
@@ -159,7 +173,9 @@ function VideogamesDetails() {
               </div>
             );
           })}
+      </div>
 
+      <div id="developer-content">
         <h3>Desarrollador(es):</h3>
         {/* Desarrolladores del juego (vienen en array.) */}
         {gameDetails.publishers.length !== 0 &&
@@ -170,7 +186,9 @@ function VideogamesDetails() {
               </div>
             );
           })}
+      </div>
 
+      <div id="release-date">
         <h3>Fecha de salida:</h3>
         {/* Fecha de release. */}
         <p>{gameDetails.released}</p>
@@ -185,7 +203,9 @@ function VideogamesDetails() {
               </div>
             );
           })}
+      </div>
 
+      <div id="platforms">
         <h3>Consola(s):</h3>
         {/* Consolas en las que el juego está disponible (vienen en array de array) */}
         {gameDetails.platforms.length !== 0 &&
@@ -196,27 +216,34 @@ function VideogamesDetails() {
               </div>
             );
           })}
+      </div>
 
+      <div id="game-website-button">
         <button>
           <a href={gameDetails.website}>Ir a website</a>
         </button>
+      </div>
 
+      <div id="game-description">
         <h3>Descripción:</h3>
         {/* Descripción del juego */}
         <Markup content={gameDetails.description} />
+      </div>
 
-        {/* ------------------------------------ */}
 
         {/* Trailers del juego (vienen en array) */}
 
+
+      <div id="game-trailer-title">
         { gameTrailer.results.length !== 0 &&
             <>
               <h3>Trailers</h3>
             </>
         }
+      </div>
 
+      <div id="game-trailer-content">
         {gameTrailer.results.length !== 0 &&
-
           gameTrailer.results.map((eachTrailer) => {
             return (
               <div key={eachTrailer.id}>
@@ -228,10 +255,12 @@ function VideogamesDetails() {
 
         }
       </div>
-        <div>
+
+      <div id="comments-components">
           <Comments/>
           <CommentsForm />
-        </div>
+      </div>
+
     </div>
   );
 }
