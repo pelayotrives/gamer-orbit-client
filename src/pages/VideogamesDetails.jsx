@@ -259,13 +259,8 @@ function VideogamesDetails() {
       <div id="comments-components">
           <Comments/>
           <CommentsForm />
-<<<<<<< HEAD
       </div>
 
-=======
-          <Comments />
-        </div>
->>>>>>> 6e1bde48eddd4f3fa549ce068d706952886909eb
     </div>
   );
 }
