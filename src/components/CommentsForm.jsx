@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { commentsService } from '../services/games.services';
 import "../App.css"
@@ -16,6 +16,11 @@ function CommentsForm () {
 
     const [comment, setComment] = useState(null)
 
+    // useEffect(() => {
+      
+    // }, [])
+    
+
     const handleCommentsChange = (event) => {
         setComment(event.target.value);
         console.log(event.target.value)
@@ -29,9 +34,8 @@ function CommentsForm () {
             const commentDetails = {
                 comment
             }
-
             await commentsService(id, commentDetails);
-            navigate(`/videogames/${id}/details`);
+            navigate(`/videogames/${id}/details`)
         }catch(error){
             navigate("/error")
         }

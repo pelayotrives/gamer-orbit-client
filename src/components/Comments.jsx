@@ -10,7 +10,7 @@ function Comments() {
 
     const {id} = useParams()
 
-    const [renderComments, setRenderComments] = useState("")
+    const [renderComments, setRenderComments] = useState([])
 
     useEffect(() => {
         getComments()
@@ -20,6 +20,7 @@ function Comments() {
         try {
             const response = await viewCommentsService(id)
             setRenderComments(response.data)
+            // console.log("Josu", response.data)
         } catch (error) {
             navigate("/error")
         }
@@ -27,22 +28,29 @@ function Comments() {
 
     if (renderComments === null) {
         return (
-            <>
-            <h4>Cargando...</h4>
             <PulseLoader color={"rgb(0,0,0)"} />
-            </>
         );
     }
 
+    console.log(renderComments);
+
     return (
-
+        
         <div>
-
+            {renderComments !== null &&
+                renderComments.map((each) => {
+                    return (
+                        <div>
+                            <hr />
+                                <p><strong>{each.usernameId.username.toUpperCase()}</strong></p>
+                                <p>{each.createdAt}</p>
+                                <p>{each.comment}</p>
+                            <hr />
+                        </div>
+                    )
+                })
+            }
         </div>
-
-
-
-
     )
 
 
