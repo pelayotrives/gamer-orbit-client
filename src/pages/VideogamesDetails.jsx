@@ -12,6 +12,7 @@ import {
 import { Markup } from "interweave";
 import StarRating from "../components/Rating";
 import CommentsForm from "../components/CommentsForm";
+import Comments from "../components/Comments";
 
 function VideogamesDetails() {
   const { isLoggedIn } = useContext(AuthContext)
@@ -215,6 +216,7 @@ function VideogamesDetails() {
       </div>
         <div>
           <CommentsForm />
+          <Comments />
         </div>
     </div>
   );

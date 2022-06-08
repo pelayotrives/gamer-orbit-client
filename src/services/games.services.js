@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+
 import service from "./config.services";
 
 //* Creamos un servicio que busca todos los archivos de juegos.
