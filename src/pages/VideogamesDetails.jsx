@@ -3,14 +3,17 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import PulseLoader from "react-spinners/PulseLoader";
 import { AuthContext } from '../context/auth.context'
 import {
+  commentsService,
   listGamesDbService,
   listGamesDetailsService,
   listGamesTrailersService,
+  viewCommentsService,
 } from "../services/games.services";
 
 // Hemos instalado Markup de Interweave con npm i interweave. Convierte strings de html en strings jsx.
 import { Markup } from "interweave";
 import Comments from "../components/Comments";
+import StarRating from "../components/Rating";
 
 function VideogamesDetails() {
   const { isLoggedIn } = useContext(AuthContext)
@@ -23,11 +26,39 @@ function VideogamesDetails() {
   // TODO ---> Estado para los trailers
   const [gameTrailer, setGameTrailers] = useState(null);
   const [status, setStatus] = useState("isOwned");
+  // Comentarios
+  const [comment, setComment] = useState(null)
+  // const [rating, setRating] = useState(0)
 
   const handleStatusChange = (event) => {
     setStatus(event.target.value);
     console.log(event.target.value);
   };
+
+  const handleCommentsChange = (event) => {
+    setComment(event.target.value);
+    console.log(event.target.value)
+  }
+
+  const handleCommentSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+
+      const commentDetails = {
+        
+        comment,
+        videogame: id
+        // rating,
+        
+      }
+
+      await commentsService(id, commentDetails);
+      navigate(`/videogames/${id}/details`);
+    } catch (error) {
+      navigate("/error")
+    }
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -51,6 +82,7 @@ function VideogamesDetails() {
   useEffect(() => {
     getVideogamesDetails();
     getVideogamesTrailers();
+    getComments();
   }, []);
 
   //! 3. Función que llama a la API y se comunica con componentDidMount
@@ -79,6 +111,16 @@ function VideogamesDetails() {
     }
   };
 
+  // Funcion para traer el servicio de comentarios y guardar el estado con los datos
+  const getComments = async () =>{
+    try {
+      const response = await viewCommentsService(id);
+      setComment(response.data);
+      console.log("Los comentarios")
+    } catch (error) {
+      navigate("/error")
+    }
+  }
   //! 4. Crear efecto de Loading.
   if (gameDetails === null) {
     return (
@@ -95,7 +137,21 @@ function VideogamesDetails() {
         <PulseLoader color={"rgb(0,0,0)"} />
       </>
     );
-  }
+  } else if (status === null) {
+    return (
+      <>
+        <h4>Cargando...</h4>
+        <PulseLoader color={"rgb(0,0,0)"} />
+      </>
+    );
+  } else if (comment === null) {
+  return (
+    <>
+      <h4>Cargando...</h4>
+      <PulseLoader color={"rgb(0,0,0)"} />
+    </>
+  );
+}
 
   return (
     <div>
@@ -125,6 +181,8 @@ function VideogamesDetails() {
           <br /> <br />
           <button type="submit">Submit</button>
         </form> }
+
+        <StarRating />
 
         {/* Nombre del juego */}
         <h1>{gameDetails.name}</h1>
@@ -201,7 +259,6 @@ function VideogamesDetails() {
           })}
       </div>
         <div>
-          <h4>Comments:</h4> 
           <Comments />
         </div>
     </div>

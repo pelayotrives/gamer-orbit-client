@@ -28,6 +28,7 @@ function App() {
       <Route path={"/profile"} element={ <IsPrivate> <Profile/> </IsPrivate> } />
       <Route path={"/profile/:id/edit"} element={ <IsPrivate> <ProfileEdit/> </IsPrivate> } />
       <Route path={"/videogames/:id/collections"} element={ <IsPrivate> <Collections/> </IsPrivate>} />
+      {/* <Route path={"/videogames/:id/comments"} element={<IsPrivate><VideogamesDetails></VideogamesDetails></IsPrivate>} /> */}
       <Route path={"/signup"} element={ <Signup/> } />
       <Route path={"/login"} element={ <Login/> } />
 
