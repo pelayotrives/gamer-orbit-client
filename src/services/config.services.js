@@ -4,7 +4,7 @@ import axios from "axios";
 //! Digamos que este es el archivo raíz y los demás servicios los agruparemos en la misma carpeta.
 
 const service = axios.create({
-    baseURL: "http://localhost:5005/api"
+    baseURL: `${process.env.REACT_APP_SERVER_URL}/api`
 })
 
 //! Código donde el token será enviado al back.
