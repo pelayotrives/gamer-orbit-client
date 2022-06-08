@@ -39,15 +39,17 @@ function CommentsForm () {
 
     return (
         <div>
-        <h4>Comments:</h4> 
         {/* Formulario para añadir el comentario a colecciones (conexión con User and Videogame.Model) */}
       { isLoggedIn === true &&
-      <form onSubmit={handleCommentSubmit}>
-        <br />
-        <textarea name='comment' rows={10} cols={40} onChange={handleCommentsChange}></textarea>
-        <br /> <br />
-        <button type="submit">Submit</button>
-      </form> }
+      <>
+        <h4>Comments:</h4>
+        <form onSubmit={handleCommentSubmit}>
+          <br />
+          <textarea name='comment' rows={10} cols={40} onChange={handleCommentsChange}></textarea>
+          <br /> <br />
+          <button type="submit">Submit</button>
+        </form>
+      </> }
       </div>
     )
 }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { PulseLoader } from 'react-spinners'
 import { viewCommentsService } from '../services/games.services'
 
@@ -16,7 +16,7 @@ function Comments() {
         getComments()
     }, [])
 
-    const getComments = () => {
+    const getComments = async () => {
         try {
             const response = await viewCommentsService(id)
             setRenderComments(response.data)
@@ -37,7 +37,7 @@ function Comments() {
     return (
 
         <div>
-            <h3>Comments</h3>
+
         </div>
 
 

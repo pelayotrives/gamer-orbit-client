@@ -140,14 +140,20 @@ function VideogamesDetails() {
         <StarRating />
 
         {/* Nombre del juego */}
+        
         <h1>{gameDetails.name}</h1>
+
+        { gameDetails.alternative_names.length !== 0 &&
+            <>
+            <h3>Nombres alternativos:</h3>
+            </>
+        }
 
         {/* Nombres alternativos del juego que vienen en array */}
         {gameDetails.alternative_names.length !== 0 &&
           gameDetails.alternative_names.map((eachTitle) => {
             return (
               <div>
-                <h3>Nombres alternativos:</h3>
                 <p>{eachTitle}</p>
               </div>
             );
@@ -201,17 +207,25 @@ function VideogamesDetails() {
         {/* ------------------------------------ */}
 
         {/* Trailers del juego (vienen en array) */}
+
+        { gameTrailer.results.length !== 0 &&
+            <>
+              <h3>Trailers</h3>
+            </>
+        }
+
         {gameTrailer.results.length !== 0 &&
+
           gameTrailer.results.map((eachTrailer) => {
             return (
               <div key={eachTrailer.id}>
-                <h3>Trailers</h3>
                 <video width={900} controls src={eachTrailer.data.max} />
-
                 {/* <source src={eachTrailer.data.max} type="video/mp4" /> */}
               </div>
             );
-          })}
+          })
+
+        }
       </div>
         <div>
           <CommentsForm />
