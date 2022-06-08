@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { loginService } from "../../services/auth.services";
 
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/auth.context.js"
 
 function Login() {
@@ -77,9 +77,17 @@ function Login() {
           onChange={handlePassword}
         />
 
+        <button type="submit">Login</button>
+
+        <br />
+
+        <Link to={"/signup"}>Not registered? Sign up!</Link>
+
+        <br /><br />
+
+        {/* Si el mensaje de error no es nulo, es que se ha seteado como que algo pasa a lo largo del código, y se mostraría aquí. */}
         { errorMessage !== null && <p>{errorMessage}</p> }
 
-        <button type="submit">Login</button>
       </form>
       
     </div>

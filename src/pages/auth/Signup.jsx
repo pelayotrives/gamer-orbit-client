@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { signupService } from '../../services/auth.services'
 
 function Signup() {
@@ -76,6 +76,10 @@ function Signup() {
             <button type='submit'>Sign Up</button>
 
             <br />
+
+            <Link to={"/login"}>Already registered? Log in!</Link>
+
+            <br /><br />
   
             {/* Si el mensaje de error no es nulo, es que se ha seteado como que algo pasa a lo largo del código, y se mostraría aquí. */}
             { errorMessage !== null && <p>{errorMessage}</p> }
