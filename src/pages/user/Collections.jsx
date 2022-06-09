@@ -12,10 +12,19 @@ function Collections() {
   const navigate = useNavigate();
 
   const [gamesCollection, setGamesCollection] = useState([]);
+<<<<<<< HEAD
   const [gameDetails, setGameDetails] = useState([])
+=======
+  //! *******************************************************
+  const [gameDetails, setGameDetails] = useState(null);
+  //! *******************************************************
+
+  console.log("OSTIA", user)
+>>>>>>> 90e8b1ad411285307c1a6d37111cde3118e7ea70
 
   useEffect(() => {
-    getGamesCollection()
+    getGamesCollection();
+    getVideogamesDetails();
   }, [])
 
   //! API
@@ -43,13 +52,30 @@ function Collections() {
     }
   }
 
-  if (gamesCollection === null) {
+  //! *******************************************************
+  const getVideogamesDetails = async () => {
+    try {
+      // 1. Llamada a la API
+      const response = await listGamesDetailsService();
+      console.log("Games Details", response.data);
+
+      // 2. Actualizamos el estado con la respuesta de la API.
+      setGameDetails(response.data);
+      console.log("response.data", response.data);
+    } catch (error) {
+      navigate("/error");
+    }
+  };
+  //! *******************************************************
+
+  if (gamesCollection === null || gameDetails === null) {
     return (
       <PulseLoader color= {"rgb(0,0,0"} />
     );
   };
 
-  console.log("Contengo esto::", gamesCollection);
+  console.log("Contengo esto en gameDetails:", gameDetails);
+  console.log("Contengo esto en gamesCollection:", gamesCollection);
 
   
   return (

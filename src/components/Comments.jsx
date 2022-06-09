@@ -21,7 +21,6 @@ function Comments() {
         try {
             const response = await viewCommentsService(id)
             setRenderComments(response.data)
-            // console.log("Josu", response.data)
         } catch (error) {
             navigate("/error")
         }
@@ -52,7 +51,8 @@ function Comments() {
                     )
                 })
             }
-        <CommentsForm/>
+        {/* Meto aquí el componente y le pongo props. Dichos props se los voy a pasar a CommentForm, todo para poder hacer que cuando enviemos un comment, se actualice y refresque solo. */}
+        <CommentsForm getComments={getComments}/>
         </div>
     )
 
