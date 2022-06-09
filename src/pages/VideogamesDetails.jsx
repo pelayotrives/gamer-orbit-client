@@ -105,14 +105,14 @@ function VideogamesDetails() {
   } else if (gameTrailer === null) {
     return (
       <>
-        <h4>Cargando...</h4>
+        <h4>Loading...</h4>
         <PulseLoader color={"rgb(0,0,0)"} />
       </>
     );
   } else if (status === null) {
     return (
       <>
-        <h4>Cargando...</h4>
+        <h4>Loading...</h4>
         <PulseLoader color={"rgb(0,0,0)"} />
       </>
     );

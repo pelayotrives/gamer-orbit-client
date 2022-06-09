@@ -4,6 +4,7 @@ import { PulseLoader } from 'react-spinners';
 import { AuthContext } from '../../context/auth.context';
 import { listGamesDetailsService } from '../../services/games.services';
 import { listCollectionsService } from '../../services/profile.services';
+import GameComp from '../../components/GameComp'
 
 function Collections() {
 
@@ -12,13 +13,19 @@ function Collections() {
   const navigate = useNavigate();
 
   const [gamesCollection, setGamesCollection] = useState([]);
+<<<<<<< HEAD
   const [gameDetails, setGameDetails] = useState([])
+=======
+  //! *******************************************************
+  const [gameDetails, setGameDetails] = useState(null);
+  //! *******************************************************
+>>>>>>> dcc659e87798ed4a31b668d3ea4b48ae44470ba5
 
   useEffect(() => {
     getGamesCollection();
-    getVideogamesDetails();
   }, [])
 
+<<<<<<< HEAD
   //! API
   const getVideogamesDetails = async () => {
     try {
@@ -34,14 +41,20 @@ function Collections() {
     }
   };
 //!
+=======
+>>>>>>> dcc659e87798ed4a31b668d3ea4b48ae44470ba5
   const getGamesCollection = async () => {
     try {
-      const response = await listCollectionsService(user._id)
-      setGamesCollection(response.data)
-      console.log("Collections:", gamesCollection)
+      const responseCollection = await listCollectionsService(user._id)
+      const responseDetails = await listGamesDetailsService(responseCollection.data.id);
+      setGamesCollection(responseCollection.data)
+      setGameDetails(responseDetails.data);
+      console.log("Collections:", responseCollection)
+      console.log("Collections2:", responseDetails)      
     } catch (error) {
       navigate("/error")
     }
+<<<<<<< HEAD
   }
 
   //! *******************************************************
@@ -59,6 +72,9 @@ function Collections() {
   //   }
   // };
   //! *******************************************************
+=======
+  } 
+>>>>>>> dcc659e87798ed4a31b668d3ea4b48ae44470ba5
 
   if (gamesCollection === null || gameDetails === null) {
     return (
@@ -72,24 +88,32 @@ function Collections() {
   
   return (
     <div>
-    <h2>Status</h2>
 
-    <h3>I own:</h3>
+      <h2>Status</h2>
+
+      <h3>I own:</h3>
+
       {
-        gamesCollection.map( (eachCollection) => {
-          return (
-            <div>
-              <h4>{eachCollection.title}</h4>
-              <h6>{eachCollection.state}</h6>
-              <p></p>
-            </div>
-          )
-        })
+        
+          gamesCollection.map( (eachCollection) => {
+            return (
+              <div>
+                <h4>{eachCollection.title}</h4>
+                <h6>{eachCollection.state}</h6>
+                <img src={eachCollection.background_image} alt="" />
+                <GameComp data={eachCollection}/>
+              </div>
+            )
+          })     
+
       }
 
-    <h5>I'm playing:</h5>
-    <h5>I've finished</h5>
-    <h5>Wishlist</h5>
+
+
+      <h5>I'm playing:</h5>
+
+      <h5>I've finished</h5>
+      <h5>Wishlist</h5>
 
     </div>
   )
