@@ -12,15 +12,7 @@ function Collections() {
   const navigate = useNavigate();
 
   const [gamesCollection, setGamesCollection] = useState([]);
-<<<<<<< HEAD
   const [gameDetails, setGameDetails] = useState([])
-=======
-  //! *******************************************************
-  const [gameDetails, setGameDetails] = useState(null);
-  //! *******************************************************
-
-  console.log("OSTIA", user)
->>>>>>> 90e8b1ad411285307c1a6d37111cde3118e7ea70
 
   useEffect(() => {
     getGamesCollection();
@@ -31,7 +23,7 @@ function Collections() {
   const getVideogamesDetails = async () => {
     try {
       // 1. Llamada a la API
-      const response = await listGamesDetailsService(gamesCollection.id);
+      const response = await listGamesDetailsService(gamesCollection.gameApiId);
       console.log("Games Details", response.data);
 
       // 2. Actualizamos el estado con la respuesta de la API.
@@ -53,19 +45,19 @@ function Collections() {
   }
 
   //! *******************************************************
-  const getVideogamesDetails = async () => {
-    try {
-      // 1. Llamada a la API
-      const response = await listGamesDetailsService();
-      console.log("Games Details", response.data);
+  // const getVideogamesDetails = async () => {
+  //   try {
+  //     // 1. Llamada a la API
+  //     const response = await listGamesDetailsService();
+  //     console.log("Games Details", response.data);
 
-      // 2. Actualizamos el estado con la respuesta de la API.
-      setGameDetails(response.data);
-      console.log("response.data", response.data);
-    } catch (error) {
-      navigate("/error");
-    }
-  };
+  //     // 2. Actualizamos el estado con la respuesta de la API.
+  //     setGameDetails(response.data);
+  //     console.log("response.data", response.data);
+  //   } catch (error) {
+  //     navigate("/error");
+  //   }
+  // };
   //! *******************************************************
 
   if (gamesCollection === null || gameDetails === null) {
