@@ -62,7 +62,9 @@ function Login() {
   return (
     <div>
 
+      <br />
       <h1>Log In</h1>
+      <br />
 
       <Form className="container" onSubmit={handleLogin}>
 

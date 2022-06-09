@@ -32,7 +32,7 @@ function Profile() {
   if (user === null) {
     return (
       <>
-      <h4>Cargando...</h4>
+      <h4>Loading...</h4>
       <PulseLoader color={"rgb(0,0,0)"} />
       </>
     );
@@ -61,8 +61,11 @@ function Profile() {
   return (
     <div>
       <div>
+        <br />
         <h1>¡Welcome again!</h1>
+        <br />
         <img src={user.avatar} alt="user pic" width={300} />
+        <br />
         <h4>Your username is {user.username}</h4>
         <h4>Your email is {user.email}</h4>
         <h5>City: {user.city}</h5>

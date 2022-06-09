@@ -36,10 +36,15 @@ function GameComp(props) {
         )
     }
 
+    
+
     return (
         <div>
-        <img src={gameDetails.background_image} width={150} alt="" />
-            
+            <h3>{gameDetails.name}</h3>
+            <p>General rating: <strong>{gameDetails.rating}</strong></p>
+            <p>Main genre: <strong>{gameDetails.genres[0].name}</strong></p>
+            <p>Released: <strong>{gameDetails.released}</strong></p>
+            <img src={gameDetails.background_image} width={250} alt="" />    
         </div>       
         )
 

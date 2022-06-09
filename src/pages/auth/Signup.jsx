@@ -65,7 +65,9 @@ function Signup() {
   return (
     <div>
 
+        <br />  
         <h1>Sign Up</h1>
+        <br />
 
         <Form className="container" onSubmit={handleSignUp}>
 

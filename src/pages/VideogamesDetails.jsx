@@ -97,7 +97,8 @@ function VideogamesDetails() {
   if (gameDetails === null) {
     return (
       <>
-        <h4>Cargando...</h4>
+        <br /> <br />
+        <h4>Loading...</h4>
         <PulseLoader color={"rgb(0,0,0)"} />
       </>
     );

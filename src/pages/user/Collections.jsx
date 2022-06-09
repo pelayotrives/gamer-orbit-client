@@ -47,31 +47,84 @@ function Collections() {
   return (
     <div>
 
-      <h2>Status</h2>
+      <br/>
+      <h2>Collections</h2>
+      <br />
 
-      <h3>I own:</h3>
+      { gamesCollection.length === 0 && 
+        <p>You have no collections.</p>
+      }
 
       {
-        
           gamesCollection.map( (eachCollection) => {
-            return (
-              <div>
-                <h4>{eachCollection.title}</h4>
-                <h6>{eachCollection.state}</h6>
-                <img src={eachCollection.background_image} alt="" />
-                <GameComp data={eachCollection}/>
-              </div>
-            )
-          })     
+            
+            if (eachCollection.state === "isFinished") {
+
+              return ( 
+               <div>
+                  <hr />
+                  <GameComp data={eachCollection}/>
+                  <br />
+                  <h5>This game belongs to your <strong style={{color:"red"}}>finished</strong> collection</h5>
+                  <p>Added to collection: <strong>{eachCollection.createdAt.slice(0,10)}</strong></p>
+                  <hr />
+                </div>
+              )
+
+            }
+
+            if (eachCollection.state === "isOwned") {
+
+              return ( 
+               <div>
+                  <hr />
+                  <GameComp data={eachCollection}/>
+                  <br />
+                  <h5>This game belongs to your <strong style={{color:"blue"}}>owned</strong> collection</h5>
+                  <p>Added to collection: <strong>{eachCollection.createdAt.slice(0,10)}</strong></p>
+                  <hr />
+                </div>
+              )
+
+            }
+
+            if (eachCollection.state === "isPlaying") {
+
+              return ( 
+               <div>
+                  <hr />
+                  <GameComp data={eachCollection}/>
+                  <br />
+                  <h5>This game belongs to your <strong style={{color:"green"}}>currently playing</strong> collection</h5>
+                  <p>Added to collection: <strong>{eachCollection.createdAt.slice(0,10)}</strong></p>
+                  <hr />
+                </div>
+              )
+
+            }
+
+            if (eachCollection.state === "isWished") {
+
+              return ( 
+               <div>
+                  <hr />
+                  <GameComp data={eachCollection}/>
+                  <br />
+                  <h5>This game belongs to your <strong style={{color:"orange"}}>wishlist</strong> collection</h5>
+                  <p>Added to collection: <strong>{eachCollection.createdAt.slice(0,10)}</strong></p>
+                  <hr />
+                </div>
+              )
+
+            }
+
+          })    
 
       }
 
 
 
-      <h5>I'm playing:</h5>
-
-      <h5>I've finished</h5>
-      <h5>Wishlist</h5>
+      
 
     </div>
   )

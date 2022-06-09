@@ -40,7 +40,8 @@ function Videogames() {
   if (allGames === null) {
     return (
       <>
-      <h4>Cargando...</h4>
+      <br /> <br />
+      <h4>Loading...</h4>
       <PulseLoader color={"rgb(0,0,0)"} />
       </>
     );
@@ -50,8 +51,9 @@ function Videogames() {
 
   return (
     <div>
-    <br />
-    <Search/> <br />
+      <br />
+      <h1>Find your favorite videogames!</h1>
+      <br />
       {allGames.results.map((eachGame) => {
         return (
           <div key={eachGame.id}>
