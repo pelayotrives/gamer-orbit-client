@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { commentsService } from '../services/games.services';
 import "../App.css"
@@ -12,18 +12,12 @@ function CommentsForm (props) {
     const navigate = useNavigate();
     const {isLoggedIn} = useContext(AuthContext)
 
-    //!************************LTSU: PASO 3************************
-    const {addComment} = props
-    //!************************LTSU: PASO 3************************
+    //! Aquí desestructuraremos getComments que nos hemos traído con props para que se refresque el comentario.
+    const {getComments} = props
 
     const {id} = useParams()
 
-    const [comment, setComment] = useState(null)
-
-    // useEffect(() => {
-      
-    // }, [])
-    
+    const [comment, setComment] = useState("")
 
     const handleCommentsChange = (event) => {
         setComment(event.target.value);
@@ -38,17 +32,17 @@ function CommentsForm (props) {
             const commentDetails = {
                 comment
             }
-
-            // ************************LTSU: PASO 4************************
-            // addComment(commentDetails)
-            // ************************LTSU: PASO 4************************
-
             await commentsService(id, commentDetails);
-            navigate(`/videogames/${id}/details`)
-        }catch(error){
+            //! Aquí invocaremos la función del componente Comments que nos hemos traído con props para que se refresque el comentario.
+            getComments()
+            //! Con el REF hacemos que se borre el texto de textarea cuando hacemos submit al comentario.
+            textareaRef.current.value = ""
+          }catch(error){
             navigate("/error")
         }
     }
+
+    const textareaRef = useRef()
 
     return (
         <div>
@@ -58,7 +52,8 @@ function CommentsForm (props) {
         <h4>Comments:</h4>
         <form onSubmit={handleCommentSubmit}>
           <br />
-          <textarea name='comment' rows={10} cols={40} onChange={handleCommentsChange}></textarea>
+          {/* Metemos el atributo ref para borrar el comentario cuando hagamos submit. */}
+          <textarea name='comment' rows={10} cols={40} onChange={handleCommentsChange} ref={textareaRef}></textarea>
           <br /> <br />
           <button type="submit">Submit</button>
         </form>
