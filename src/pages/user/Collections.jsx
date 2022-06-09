@@ -13,14 +13,27 @@ function Collections() {
   const navigate = useNavigate();
 
   const [gamesCollection, setGamesCollection] = useState([]);
-  //! *******************************************************
-  const [gameDetails, setGameDetails] = useState(null);
-  //! *******************************************************
+  const [gameDetails, setGameDetails] = useState([])
 
   useEffect(() => {
     getGamesCollection();
   }, [])
 
+  //! API
+  const getVideogamesDetails = async () => {
+    try {
+      // 1. Llamada a la API
+      const response = await listGamesDetailsService(gamesCollection.gameApiId);
+      console.log("Games Details", response.data);
+
+      // 2. Actualizamos el estado con la respuesta de la API.
+      setGameDetails(response.data);
+      console.log("response.data", response.data);
+    } catch (error) {
+      navigate("/error");
+    }
+  };
+//!
   const getGamesCollection = async () => {
     try {
       const responseCollection = await listCollectionsService(user._id)
@@ -32,7 +45,23 @@ function Collections() {
     } catch (error) {
       navigate("/error")
     }
-  } 
+  }
+
+  //! *******************************************************
+  // const getVideogamesDetails = async () => {
+  //   try {
+  //     // 1. Llamada a la API
+  //     const response = await listGamesDetailsService();
+  //     console.log("Games Details", response.data);
+
+  //     // 2. Actualizamos el estado con la respuesta de la API.
+  //     setGameDetails(response.data);
+  //     console.log("response.data", response.data);
+  //   } catch (error) {
+  //     navigate("/error");
+  //   }
+  // };
+  //! *******************************************************
 
   if (gamesCollection === null || gameDetails === null) {
     return (
