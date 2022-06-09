@@ -3,6 +3,7 @@ import { NavLink, Link, useNavigate } from "react-router-dom";
 import PulseLoader from "react-spinners/PulseLoader";
 import axios from "axios";
 import { listGamesService } from "../services/games.services";
+import Search from "../components/Search";
 
 function Videogames() {
   const navigate = useNavigate();
@@ -49,6 +50,8 @@ function Videogames() {
 
   return (
     <div>
+    <br />
+    <Search/> <br />
       {allGames.results.map((eachGame) => {
         return (
           <div key={eachGame.id}>

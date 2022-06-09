@@ -1,15 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { PulseLoader } from 'react-spinners';
-import { listGamesDbService } from '../../services/games.services';
-
+import { AuthContext } from '../../context/auth.context';
+import { listCollectionsService } from '../../services/profile.services';
 
 function Collections() {
 
 
+  const {user} = useContext(AuthContext)
   const navigate = useNavigate();
-
-  const {id} = useParams()
 
   const [gamesCollection, setGamesCollection] = useState([]);
 
@@ -19,9 +18,9 @@ function Collections() {
 
   const getGamesCollection = async () => {
     try {
-      const response = await listGamesDbService(id)
+      const response = await listCollectionsService(user._id)
       setGamesCollection(response.data)
-      console.log("collections", gamesCollection)
+      console.log("Collections:", gamesCollection)
     } catch (error) {
       navigate("/error")
     }
@@ -33,36 +32,30 @@ function Collections() {
     );
   };
 
+  console.log("Contengo esto::", gamesCollection);
+
   
   return (
-    <div key = {gamesCollection.id}>
+    <div>
+    <h2>Status</h2>
 
-    {gamesCollection.state === "isPlaying" &&
-      <div>
-      {gamesCollection.title}
-      </div>
-      }
-      {gamesCollection.state === "isOwned" &&
-        <div>
-        {gamesCollection.title}
-        </div>
-      }
-      {gamesCollection.state === "isWished" &&
-        <div>
-        {gamesCollection.title}
-        </div>
-      }
-      {gamesCollection.state === "isFinished" &&
-        <div>
-        {gamesCollection.title}
-        </div>
+    <h3>I own:</h3>
+      {
+        gamesCollection.map( (eachCollection) => {
+          return (
+            <div>
+              <h4>{eachCollection.title}</h4>
+              <h6>{eachCollection.state}</h6>
+              <p></p>
+            </div>
+          )
+        })
       }
 
-    
-    
-    
-    
-    
+    <h5>I'm playing:</h5>
+    <h5>I've finished</h5>
+    <h5>Wishlist</h5>
+
     </div>
   )
 }

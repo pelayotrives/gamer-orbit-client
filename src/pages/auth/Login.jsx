@@ -64,8 +64,9 @@ function Login() {
 
       <h1>Log In</h1>
 
-      <Form onSubmit={handleLogin}>
-      <Form.Group className="mb-3 text-style" controlId="formBasicUsername"></Form.Group>
+      <Form className="container" onSubmit={handleLogin}>
+
+      <Form.Group className="mb-3 text-style" controlId="formBasicUsername">
         <Form.Label>Username:</Form.Label>
         <Form.Control
           type="text"
@@ -73,25 +74,31 @@ function Login() {
           value={username}
           onChange={handleUsername}
         />
+      </Form.Group>
 
-        <label>Password:</label>
-        <input
+      <Form.Group className="mb-3 text-style" controlId="formBasicUsername">
+        <Form.Label>Password:</Form.Label>
+        <Form.Control
           type="password"
           name="password"
           value={password}
           onChange={handlePassword}
         />
+      </Form.Group>
 
-        <Button type="submit">Login</Button>
+        {/* Si el mensaje de error no es nulo, es que se ha seteado como que algo pasa a lo largo del código, y se mostraría aquí. */}
+        { errorMessage !== null && <p className="required-alert">{errorMessage}</p> }
+
+        <Button variant="outline-dark" className="register-btn" type='submit'>Login</Button>
 
         <br />
 
-        <Link to={"/signup"}>Not registered? Sign up!</Link>
+        <Alert className="register-now-alert" variant={"secondary"}>
+            <Link className="register-now-alert" to={"/signup"}>Not registered? Sign up!</Link>
+        </Alert>
 
-        <br /><br />
+        <br />
 
-        {/* Si el mensaje de error no es nulo, es que se ha seteado como que algo pasa a lo largo del código, y se mostraría aquí. */}
-        { errorMessage !== null && <p>{errorMessage}</p> }
 
       </Form>
       

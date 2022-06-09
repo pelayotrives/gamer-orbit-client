@@ -23,10 +23,16 @@ const uploadService = (uploadForm) => {
     return service.post("/uploader", uploadForm)
 }
 
+const listCollectionsService = (_id) => {
+        console.log("Working collections.");
+        return service.get(`/profile/collections`)
+    }
+
 
 export {
     listProfileService,
     profileEditService,
     profileDeleteService,
-    uploadService
+    uploadService,
+    listCollectionsService
 }

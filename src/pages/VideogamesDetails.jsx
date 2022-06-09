@@ -20,7 +20,7 @@ import "bootstrap/dist/css/bootstrap.css"
 
 
 function VideogamesDetails() {
-  const { isLoggedIn } = useContext(AuthContext)
+  const { isLoggedIn, user } = useContext(AuthContext)
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -45,13 +45,14 @@ function VideogamesDetails() {
 
     try {
       const dbDetails = {
+        userId: user._id,
         gameApiId: id,
         title: gameDetails.name,
         status,
       };
 
       await listGamesDbService(id, dbDetails);
-      navigate(`/videogames/${id}/collections`);
+      navigate(`/profile/collections`);
     } catch (error) {
       navigate("/error");
     }
@@ -116,6 +117,15 @@ function VideogamesDetails() {
       </>
     );
   }
+
+  //! ************************LTSU: PASO 1********************************
+
+  // const addComment = (commentToAdd) => {
+  //   console.log(commentToAdd);
+    
+  // }
+
+  //! *************************LTSU: PASO 1*******************************
 
   return (
     <div>
@@ -274,8 +284,14 @@ function VideogamesDetails() {
       {isLoggedIn === true &&
 
       <div id="comments-components">
+ 
+
           <Comments/>
-          <CommentsForm />
+
+          {/* ************************LTSU: PASO 2************************ */}
+          {/* <CommentsForm addComment={addComment}/> */}
+          {/* ************************LTSU: PASO 2************************ */}
+
       </div>
     }
     </div>

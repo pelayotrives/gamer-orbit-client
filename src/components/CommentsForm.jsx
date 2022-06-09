@@ -7,10 +7,14 @@ import { AuthContext } from '../context/auth.context';
 
 
 
-function CommentsForm () {
+function CommentsForm (props) {
 
     const navigate = useNavigate();
     const {isLoggedIn} = useContext(AuthContext)
+
+    //!************************LTSU: PASO 3************************
+    const {addComment} = props
+    //!************************LTSU: PASO 3************************
 
     const {id} = useParams()
 
@@ -34,6 +38,11 @@ function CommentsForm () {
             const commentDetails = {
                 comment
             }
+
+            // ************************LTSU: PASO 4************************
+            // addComment(commentDetails)
+            // ************************LTSU: PASO 4************************
+
             await commentsService(id, commentDetails);
             navigate(`/videogames/${id}/details`)
         }catch(error){
