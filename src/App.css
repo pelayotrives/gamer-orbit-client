@@ -37,100 +37,82 @@
   }
 }
 
-.comments {
-  margin-top: 20px;
-}
-
-.comments-title {
-  font-size: 30px;
-  margin-bottom: 20px;
-}
-
-.comments-container {
-  margin-top: 40px;
-}
-
-.comment-form-title {
-  font-size: 22px;
-}
-
-.comment-form-textarea {
-  width: 100%;
-  height: 80px;
-  margin-bottom: 8px;
-  margin-top: 8px;
-  border: 1px solid rgb(107, 114, 12);
-}
-
-.comment-form-button {
-  font-size: 16px;
-  padding: 8px 16px;
-  background: rgb(59, 130, 246);
-  border-radius: 8px;
-  color: white;
-}
-
-.comment-form-button:hover:enabled {
-  cursor: pointer;
-  background: rgb(37, 99, 235);
-}
-
-.comment-form-button:disabled {
-  opacity: 0.7;
-  cursor: default;
-}
-
-.comment-form-cancel-button {
-  margin-left: 10px;
-}
-
-.comment {
+.container {
   display: flex;
-  margin-bottom: 28px;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2%;
 }
 
-.comment-image-container {
-  margin-right: 12px;
-}
-
-.comment-image-container img {
+.register-now-alert {
+  text-decoration: none;
+  font-weight: 500;
+  color: black;
   border-radius: 50px;
 }
 
-.comment-right-part {
-  width: 100%;
-}
-
-.comment-content {
+.text-style {
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-weight: 500;
 }
 
-.comment-author {
-  margin-right: 8px;
-  font-size: 20px;
-  color: rgb(59, 130, 246);
+.required-alert {
+ color: rgb(172, 58, 58);
+ font-style: italic;
 }
 
-.comment-text {
-  font-size: 18px;
+.register-btn {
+  border-radius: 10px;
 }
 
-.comment-actions {
+/* #nav-div {
   display: flex;
-  font-size: 12px;
-  color: rgb(51, 51, 51);
-  cursor: pointer;
-  margin-top: 8px;
+  flex-direction: row;
+  
+}  */
+
+.nav-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
-.comment-action {
-  margin-right: 8px;
+.nav-container img {
+  height: 15vmin;
+  margin-left: 0%;
 }
 
-.comment-action:hover {
-  text-decoration: underline;
+.carousel {
+  width: 600px;
+  margin: auto;
+
 }
 
-.replies {
-  margin-top: 20px;
+.carousel-control-prev {
+  height: 300px;
 }
+
+.carousel-control-next {
+  height: 300px;
+}
+
+.carousel .carousel-control-prev-icon {
+  visibility: hidden;
+}
+
+.carousel:hover .carousel-control-prev-icon {
+  visibility: visible;
+}
+
+.carousel .carousel-control-next-icon {
+  visibility: hidden;
+}
+
+.carousel:hover .carousel-control-next-icon {
+  visibility: visible;
+}
+
+
+

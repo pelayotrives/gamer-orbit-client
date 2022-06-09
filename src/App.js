@@ -1,3 +1,6 @@
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
 import Home from './pages/Home';
 import { Routes, Route } from "react-router-dom"
@@ -12,14 +15,15 @@ import Error from './pages/error/Error';
 import NotFound from './pages/error/NotFound';
 
 // Componentes
-import Navbar from './components/Navbar';
+
 import IsPrivate from './components/IsPrivate';
+import MyNavbar from './components/MyNavbar';
 
 function App() {
   return (
     <div className="App">
 
-    <Navbar/> 
+    <MyNavbar/> 
 
     <Routes>
       <Route path={"/"} element={ <Home/> } />
@@ -28,7 +32,6 @@ function App() {
       <Route path={"/profile"} element={ <IsPrivate> <Profile/> </IsPrivate> } />
       <Route path={"/profile/:id/edit"} element={ <IsPrivate> <ProfileEdit/> </IsPrivate> } />
       <Route path={"/videogames/:id/collections"} element={ <IsPrivate> <Collections/> </IsPrivate>} />
-      {/* <Route path={"/videogames/:id/comments"} element={<IsPrivate><VideogamesDetails></VideogamesDetails></IsPrivate>} /> */}
       <Route path={"/signup"} element={ <Signup/> } />
       <Route path={"/login"} element={ <Login/> } />
 

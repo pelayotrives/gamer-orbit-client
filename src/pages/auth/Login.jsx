@@ -4,6 +4,10 @@ import { loginService } from "../../services/auth.services";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/auth.context.js"
 
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Alert from 'react-bootstrap/Alert';
+
 function Login() {
 
   const { authenticateUser } = useContext(AuthContext)
@@ -60,9 +64,10 @@ function Login() {
 
       <h1>Log In</h1>
 
-      <form onSubmit={handleLogin}>
-        <label>Username:</label>
-        <input
+      <Form onSubmit={handleLogin}>
+      <Form.Group className="mb-3 text-style" controlId="formBasicUsername"></Form.Group>
+        <Form.Label>Username:</Form.Label>
+        <Form.Control
           type="text"
           name="username"
           value={username}
@@ -77,7 +82,7 @@ function Login() {
           onChange={handlePassword}
         />
 
-        <button type="submit">Login</button>
+        <Button type="submit">Login</Button>
 
         <br />
 
@@ -88,7 +93,7 @@ function Login() {
         {/* Si el mensaje de error no es nulo, es que se ha seteado como que algo pasa a lo largo del código, y se mostraría aquí. */}
         { errorMessage !== null && <p>{errorMessage}</p> }
 
-      </form>
+      </Form>
       
     </div>
   );

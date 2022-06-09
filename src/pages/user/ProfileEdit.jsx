@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { listProfileService, profileEditService } from '../../services/profile.services'
+import { listProfileService, profileEditService, uploadService } from '../../services/profile.services'
 
 function ProfileEdit() {
 
   const navigate = useNavigate()
   const {_id} = useParams()
 
-  const [avatar, setAvatar] = useState("")
+  const [avatar, setAvatar] = useState() // poner una url a imagen estandar como estado inicial
   const [city, setCity] = useState("")
   const [country, setCountry] = useState("")
   const [address, setAddress] = useState("")
@@ -15,10 +15,6 @@ function ProfileEdit() {
   const [genre, setGenre] = useState("")
   const [aboutme, setAboutme] = useState("")
 
-  const handleAvatarEdit = (event) => {
-    console.log(event.target.value);
-    setAvatar(event.target.value)
-  }
 
   const handleCityEdit = (event) => {
     console.log(event.target.value);
@@ -48,6 +44,27 @@ function ProfileEdit() {
   const handleAboutmeEdit = (event) => {
     console.log(event.target.value);
     setAboutme(event.target.value)
+  }
+
+  useEffect(() => {
+    getUserData()
+  })
+
+  const getUserData = async () => {
+    try {
+
+      const response = await listProfileService()
+      setAvatar(response.data.avatar)
+      // setCity(response.data.city)
+      // setCountry(response.data.country)
+      // setAddress(response.data.address)
+      // setBirthday(response.data.birthday)
+      // setGenre(response.data.genre)
+      // setAboutme(response.data.aboutme)
+
+    }catch(error) {
+      navigate("/error")
+    }
   }
 
   const handleEdit = async (event) => {
@@ -98,6 +115,24 @@ function ProfileEdit() {
     }
   }
 
+  const handleImageChange = async (event) => {
+
+    console.log(event.target.files[0])
+
+    // tipo de formulario que ya viene preparado para la transferencia de archivos
+    const uploadForm = new FormData()
+    uploadForm.append("image", event.target.files[0])
+    try {
+
+      const response = await uploadService(uploadForm)
+      setAvatar(response.data)
+
+
+    } catch (error) {
+      navigate("/error")
+    }
+  }
+
   return (
 
     <div>
@@ -105,9 +140,9 @@ function ProfileEdit() {
     <br />
       <form onSubmit={handleEdit}>
 
-        <label htmlFor="avatar">Avatar: </label>
+        {/* <label htmlFor="avatar">Avatar: </label>
         <input type="file" name='avatar' value={avatar} onChange={handleAvatarEdit}/>
-        <br /><br />
+        <br /><br /> */}
 
         <label htmlFor="city">Ciudad: </label>
         <input type="text" name='city' value={city} onChange={handleCityEdit}/>
@@ -132,6 +167,11 @@ function ProfileEdit() {
         <label htmlFor="aboutme">About me: </label>
         <textarea name='aboutme' rows={10} cols={40} value={aboutme} onChange={handleAboutmeEdit}></textarea>
         <br /><br />
+
+        <label htmlFor="image">Imagen</label>
+        <input type="file" name="image" onChange={handleImageChange} />
+
+        <img src={avatar} alt="profile-pic" width={200}/>
 
         <button type='submit'>Editar</button>
 

@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { Link, useLocation, useParams } from "react-router-dom"
 import { useNavigate } from 'react-router-dom'
 import { listProfileService, profileDeleteService } from '../../services/profile.services'
 import { PulseLoader } from 'react-spinners/PulseLoader'
+import {AuthContext} from "../../context/auth.context.js"
 
 function Profile() {
 
   const {_id} = useParams()
   const navigate = useNavigate()
+
+  const {authenticateUser} = useContext(AuthContext)
 
   const [user, setUser] = useState("")
 
@@ -42,6 +45,8 @@ function Profile() {
     try {
       await profileDeleteService(_id)
       localStorage.removeItem("authToken")
+      // es importante invocar de nuevo la funciona de authenticate cuando borras un usuario. Para que después compruebe que el usuario ya no está autenticado.
+      authenticateUser()
       navigate("/")
     }
     catch (error) {
@@ -57,6 +62,7 @@ function Profile() {
     <div>
       <div>
         <h1>¡Welcome again!</h1>
+        <img src={user.avatar} alt="user pic" width={300} />
         <h4>Your username is {user.username}</h4>
         <h4>Your email is {user.email}</h4>
         <h5>City: {user.city}</h5>

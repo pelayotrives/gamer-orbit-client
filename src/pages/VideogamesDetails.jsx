@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import PulseLoader from "react-spinners/PulseLoader";
-import { AuthContext } from '../context/auth.context'
+import { AuthContext, isLoggedIn } from '../context/auth.context'
 import {
   listGamesDbService,
   listGamesDetailsService,
@@ -13,11 +13,17 @@ import { Markup } from "interweave";
 import StarRating from "../components/Rating";
 import CommentsForm from "../components/CommentsForm";
 import Comments from "../components/Comments";
+import {Carousel} from "react-bootstrap";
+import ReactPlayer from "react-player"
+import "bootstrap/dist/css/bootstrap.css"
+
+
 
 function VideogamesDetails() {
   const { isLoggedIn } = useContext(AuthContext)
   const { id } = useParams();
   const navigate = useNavigate();
+
 
   // Llamar a la API
   //! 1. Estados
@@ -82,7 +88,9 @@ function VideogamesDetails() {
     } catch (error) {
       navigate("/error");
     }
-  };
+  }; 
+
+
 
   //! 4. Crear efecto de Loading.
   if (gameDetails === null) {
@@ -233,7 +241,6 @@ function VideogamesDetails() {
 
         {/* Trailers del juego (vienen en array) */}
 
-
       <div id="game-trailer-title">
         { gameTrailer.results.length !== 0 &&
             <>
@@ -242,25 +249,35 @@ function VideogamesDetails() {
         }
       </div>
 
-      <div id="game-trailer-content">
+      <div className="App">
+      <Carousel>
         {gameTrailer.results.length !== 0 &&
           gameTrailer.results.map((eachTrailer) => {
             return (
-              <div key={eachTrailer.id}>
-                <video width={900} controls src={eachTrailer.data.max} />
-                {/* <source src={eachTrailer.data.max} type="video/mp4" /> */}
-              </div>
+              <Carousel.Item key={eachTrailer.id}>
+                <ReactPlayer
+                  url={eachTrailer.data.max}
+                  pip={true}
+                  controls={true}
+                  playing={false}
+                />
+                
+              </Carousel.Item>     
+          
             );
           })
 
         }
+        </Carousel>
       </div>
+
+      {isLoggedIn === true &&
 
       <div id="comments-components">
           <Comments/>
           <CommentsForm />
       </div>
-
+    }
     </div>
   );
 }

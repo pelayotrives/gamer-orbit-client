@@ -2,6 +2,11 @@ import React, {useState} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { signupService } from '../../services/auth.services'
 
+//! Boostrap
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Alert from 'react-bootstrap/Alert';
+
 function Signup() {
 
   const [username, setUsername] = useState("")
@@ -62,29 +67,37 @@ function Signup() {
 
         <h1>Sign Up</h1>
 
-        <form onSubmit={handleSignUp}>
+        <Form className="container" onSubmit={handleSignUp}>
 
-            <label htmlFor="username">Username: </label>
-            <input type="text" name='username' value={username} onChange={handleUsername}/>
+          <Form.Group className="mb-3 text-style" controlId="formBasicUsername">
+            <Form.Label htmlFor="username">Username: </Form.Label>
+            <Form.Control type="text" name='username' value={username} onChange={handleUsername}/>
+          </Form.Group>  
 
-            <label htmlFor="email">Email: </label>
-            <input type="email" name='email' value={email} onChange={handleEmail}/>
+          <Form.Group className="mb-3 text-style" controlId="formBasicEmail">
+            <Form.Label htmlFor="email">Email: </Form.Label>
+            <Form.Control type="email" name='email' value={email} onChange={handleEmail}/>
+          </Form.Group>
 
-            <label htmlFor="password">Password: </label>
-            <input type="password" name='password' value={password} onChange={handlePassword}/>
+          <Form.Group className="mb-3 text-style" controlId="formBasicPassword">
+            <Form.Label htmlFor="password">Password: </Form.Label>
+            <Form.Control type="password" name='password' value={password} onChange={handlePassword}/>
+          </Form.Group>
 
-            <button type='submit'>Sign Up</button>
+          
+            {/* Si el mensaje de error no es nulo, es que se ha seteado como que algo pasa a lo largo del código, y se mostraría aquí. */}
+            { errorMessage !== null && <p className="required-alert">{errorMessage}</p>}
+          
+
+            <Button variant="outline-dark" className="register-btn" type='submit'>Sign Up</Button>
 
             <br />
 
-            <Link to={"/login"}>Already registered? Log in!</Link>
+          <Alert className="register-now-alert" variant={"secondary"}>
+            <Link className="register-now-alert" to={"/login"}>Already registered? Log in!</Link>
+          </Alert>
 
-            <br /><br />
-  
-            {/* Si el mensaje de error no es nulo, es que se ha seteado como que algo pasa a lo largo del código, y se mostraría aquí. */}
-            { errorMessage !== null && <p>{errorMessage}</p> }
-
-        </form>
+        </Form>
     
     </div>
   )

@@ -15,12 +15,18 @@ const profileEditService = (_id, profile) => {
 //! Función para ruta DELETE donde eliminamos los usuarios.
 const profileDeleteService = (_id) => {
     console.log("Working profile delete.");
-    return service.delete(`/profile/${_id}`)
+    return service.delete(`/profile`)
+}
+
+// ruta para cloudinary
+const uploadService = (uploadForm) => {
+    return service.post("/uploader", uploadForm)
 }
 
 
 export {
     listProfileService,
     profileEditService,
-    profileDeleteService
+    profileDeleteService,
+    uploadService
 }
