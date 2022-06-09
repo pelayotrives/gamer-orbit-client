@@ -39,7 +39,7 @@ function MyNavbar() {
           <Nav.Link as={NavLink} to={"/"}> Home </Nav.Link>
             <Nav.Link as={NavLink} to={"/videogames"} end={true}> Videogames </Nav.Link>
             <Nav.Link as={NavLink} to={"/profile"}> Profile </Nav.Link>
-            <Nav.Link as={NavLink} to={"videogames/:id/collections"} end={true}> Collections </Nav.Link>
+            <Nav.Link as={NavLink} to={"/profile/collections"} end={true}> Collections </Nav.Link>
           </Nav>
           <Nav>
             <Nav.Link onClick={handleLogout}> Log Out </Nav.Link>

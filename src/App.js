@@ -30,7 +30,7 @@ function App() {
       <Route path={"/videogames/:id/details"} element={ <VideogamesDetails/> } />
       <Route path={"/profile"} element={ <IsPrivate> <Profile/> </IsPrivate> } />
       <Route path={"/profile/:id/edit"} element={ <IsPrivate> <ProfileEdit/> </IsPrivate> } />
-      <Route path={"/videogames/:id/collections"} element={ <IsPrivate> <Collections/> </IsPrivate>} />
+      <Route path={"/profile/collections"} element={ <IsPrivate> <Collections/> </IsPrivate>} />
       <Route path={"/signup"} element={ <Signup/> } />
       <Route path={"/login"} element={ <Login/> } />
 
