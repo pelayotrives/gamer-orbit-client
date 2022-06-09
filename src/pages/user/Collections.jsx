@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { PulseLoader } from 'react-spinners';
 import { AuthContext } from '../../context/auth.context';
+import { listGamesDetailsService } from '../../services/games.services';
 import { listCollectionsService } from '../../services/profile.services';
 
 function Collections() {
@@ -11,11 +12,27 @@ function Collections() {
   const navigate = useNavigate();
 
   const [gamesCollection, setGamesCollection] = useState([]);
+  const [gameDetails, setGameDetails] = useState([])
 
   useEffect(() => {
     getGamesCollection()
   }, [])
 
+  //! API
+  const getVideogamesDetails = async () => {
+    try {
+      // 1. Llamada a la API
+      const response = await listGamesDetailsService(gamesCollection.id);
+      console.log("Games Details", response.data);
+
+      // 2. Actualizamos el estado con la respuesta de la API.
+      setGameDetails(response.data);
+      console.log("response.data", response.data);
+    } catch (error) {
+      navigate("/error");
+    }
+  };
+//!
   const getGamesCollection = async () => {
     try {
       const response = await listCollectionsService(user._id)
