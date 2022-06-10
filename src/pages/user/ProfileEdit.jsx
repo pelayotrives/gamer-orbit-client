@@ -2,6 +2,9 @@ import React, {useEffect, useState} from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { listProfileService, profileEditService, uploadService } from '../../services/profile.services'
 
+//! Boostrap
+import Button from 'react-bootstrap/Button';
+
 function ProfileEdit() {
 
   const navigate = useNavigate()
@@ -173,7 +176,7 @@ function ProfileEdit() {
 
         <img src={avatar} alt="profile-pic" width={200}/>
 
-        <button type='submit'>Editar</button>
+        <Button type='submit'>Editar</Button>
 
       </form>
     </div>

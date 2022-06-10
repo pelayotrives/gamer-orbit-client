@@ -5,6 +5,10 @@ import { listProfileService, profileDeleteService } from '../../services/profile
 import { PulseLoader } from 'react-spinners/PulseLoader'
 import {AuthContext} from "../../context/auth.context.js"
 
+//! Boostrap
+import Button from 'react-bootstrap/Button';
+
+
 function Profile() {
 
   const {_id} = useParams()
@@ -73,8 +77,9 @@ function Profile() {
         <h5>Genre: {user.genre}</h5>
         <h5>Address: {user.address}</h5>
         <h5>About me: {user.aboutme}</h5>
-        <button><Link to={`/profile/${user._id}/edit`}> Edit profile </Link></button>
-        <button onClick={handleDelete}> Delete profile </button>
+        <br />
+        <Button variant="outline-dark" id="register-margin-button" className="register-btn"><Link className='button-link' to={`/profile/${user._id}/edit`}> Edit profile </Link></Button>
+        <Button variant="outline-dark" className="register-btn" onClick={handleDelete}> Delete profile </Button>
       </div>
     </div>
   )

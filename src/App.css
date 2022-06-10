@@ -67,6 +67,10 @@
   border-radius: 10px;
 }
 
+#register-margin-button {
+  margin-right: 25px;
+}
+
 /* #nav-div {
   display: flex;
   flex-direction: row;
@@ -112,6 +116,16 @@
 
 .carousel:hover .carousel-control-next-icon {
   visibility: visible;
+}
+
+.button-link {
+  text-decoration: none;
+  color: black;
+}
+
+.button-link:hover {
+  text-decoration: none;
+  color: white
 }
 
 
