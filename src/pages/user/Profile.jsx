@@ -64,11 +64,12 @@ function Profile() {
 
   return (
     <div>
-      <div className='authCard'>
+      <div className='authCard' id='authCard-profile'>
         <br />
         <h1>¡Welcome again!</h1>
         <br />
-        <img src={user.avatar} alt="user pic" width={300} />
+        <img src="http://via.placeholder.com/150x150" alt="Placeholder" />
+        {/* <img src={user.avatar} alt="user pic" width={300} /> */}
         <br /><br />
         <h6>Your username is <strong>{user.username}</strong></h6>
         <h6>Your email is <strong>{user.email}</strong></h6>

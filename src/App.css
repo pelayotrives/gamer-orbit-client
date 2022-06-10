@@ -1,6 +1,15 @@
 .App {
   text-align: center;
 }
+
+.homeVideo {
+  background-image: url(../public/back.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  height: 100%;
+}
  
 
 .App-logo {
@@ -188,6 +197,11 @@
   justify-content: center;
   flex-direction: column;
   margin: 0 auto;
+}
+
+#authCard-profile {
+  position:relative;
+  top: 13vh;
 }
 
 .authCard-login {
