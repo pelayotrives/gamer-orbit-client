@@ -2,15 +2,30 @@
   text-align: center;
 }
 
-.homeVideo {
+#background-image-div {
   background-image: url(../public/back.jpg);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
+  padding: 218px;
   height: 100%;
 }
  
+#whiteBack {
+  overflow-y: auto;
+  width: 35rem;
+  border-radius: 30px;
+  background: rgb(255,255,255,0.4);
+  box-shadow: 15px 15px 30px #bebebe,
+              -15px -15px 30px #ffffff;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 auto;
+}
 
 .App-logo {
   height: 40vmin;

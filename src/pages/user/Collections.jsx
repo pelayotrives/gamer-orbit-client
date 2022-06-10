@@ -25,11 +25,11 @@ function Collections() {
     try {
       // 1. Llamada a la API
       const response = await listGamesDetailsService(gamesCollection.gameApiId);
-      console.log("Games Details", response.data);
+      // -----------> console.log("Games Details", response.data);
 
       // 2. Actualizamos el estado con la respuesta de la API.
       setGameDetails(response.data);
-      console.log("response.data", response.data);
+      // -----------> console.log("response.data", response.data);
     } catch (error) {
       navigate("/error");
     }
@@ -41,8 +41,8 @@ function Collections() {
       const responseDetails = await listGamesDetailsService(responseCollection.data.id);
       setGamesCollection(responseCollection.data)
       setGameDetails(responseDetails.data);
-      console.log("Collections:", responseCollection)
-      console.log("Collections2:", responseDetails)      
+      // -----------> console.log("Collections:", responseCollection)
+      // -----------> console.log("Collections2:", responseDetails)      
     } catch (error) {
       navigate("/error")
     }
@@ -54,8 +54,8 @@ function Collections() {
     );
   };
 
-  console.log("Contengo esto en gameDetails:", gameDetails);
-  console.log("Contengo esto en gamesCollection:", gamesCollection);
+  // -----------> console.log("Contengo esto en gameDetails:", gameDetails);
+  // -----------> console.log("Contengo esto en gamesCollection:", gamesCollection);
 
   
   return (
