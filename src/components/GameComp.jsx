@@ -15,13 +15,13 @@ function GameComp(props) {
       getDataFromApi()
     }, [])
 
-    console.log("Un gordo pito", gameProps);
+    console.log("Game Props:", gameProps);
 
     const getDataFromApi = async () => {
         try {
             const response = await listGamesDetailsService(gameProps.gameApiId)
             setGameDetails(response.data)
-            console.log("GRAN PITO GORDO",response.data);
+            console.log("Response data de setGameDetails:",response.data);
         } catch (error) {
             navigate("/error")
         }
@@ -35,8 +35,6 @@ function GameComp(props) {
           </div>
         )
     }
-
-    
 
     return (
         <div>

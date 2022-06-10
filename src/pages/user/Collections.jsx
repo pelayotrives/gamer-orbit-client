@@ -17,6 +17,7 @@ function Collections() {
 
   useEffect(() => {
     getGamesCollection();
+    getVideogamesDetails();
   }, [])
 
   //! API
@@ -33,7 +34,7 @@ function Collections() {
       navigate("/error");
     }
   };
-//!
+
   const getGamesCollection = async () => {
     try {
       const responseCollection = await listCollectionsService(user._id)
@@ -46,22 +47,6 @@ function Collections() {
       navigate("/error")
     }
   }
-
-  //! *******************************************************
-  // const getVideogamesDetails = async () => {
-  //   try {
-  //     // 1. Llamada a la API
-  //     const response = await listGamesDetailsService();
-  //     console.log("Games Details", response.data);
-
-  //     // 2. Actualizamos el estado con la respuesta de la API.
-  //     setGameDetails(response.data);
-  //     console.log("response.data", response.data);
-  //   } catch (error) {
-  //     navigate("/error");
-  //   }
-  // };
-  //! *******************************************************
 
   if (gamesCollection === null || gameDetails === null) {
     return (
@@ -76,13 +61,13 @@ function Collections() {
   return (
     <div>
 
-      <br/>
+      {/* <br/>
       <h2>Collections</h2>
-      <br />
+      <br /> */}
 
-      { gamesCollection.length === 0 && 
+      {/* { gamesCollection.length === 0 && 
         <p>You have no collections.</p>
-      }
+      } */}
 
       {
           gamesCollection.map( (eachCollection) => {
@@ -150,10 +135,6 @@ function Collections() {
           })    
 
       }
-
-
-
-      
 
     </div>
   )
