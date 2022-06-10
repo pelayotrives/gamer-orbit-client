@@ -91,7 +91,9 @@ function Signup() {
             { errorMessage !== null && <p className="required-alert">{errorMessage}</p>}
           
 
+            <br />
             <Button variant="outline-dark" className="register-btn" type='submit'>Sign Up</Button>
+            <br />
 
             <br />
 

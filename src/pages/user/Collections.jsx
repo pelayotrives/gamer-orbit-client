@@ -61,13 +61,13 @@ function Collections() {
   return (
     <div>
 
-      {/* <br/>
+      <br/>
       <h2>Collections</h2>
-      <br /> */}
+      <br />
 
-      {/* { gamesCollection.length === 0 && 
+      { gamesCollection.length === 0 && 
         <p>You have no collections.</p>
-      } */}
+      }
 
       {
           gamesCollection.map( (eachCollection) => {

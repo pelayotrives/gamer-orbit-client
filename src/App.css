@@ -1,6 +1,7 @@
 .App {
   text-align: center;
 }
+ 
 
 .App-logo {
   height: 40vmin;
@@ -67,6 +68,7 @@
   border-radius: 10px;
 }
 
+
 #register-margin-button {
   margin-right: 25px;
 }
@@ -123,10 +125,50 @@
   color: black;
 }
 
+#button-website a {
+  text-decoration: none;
+  color: black;
+}
+
 .button-link:hover {
   text-decoration: none;
   color: white
 }
 
+#button-website a:hover {
+  text-decoration: none;
+  color: white;
+}
 
+#game-website-button:hover {
+  color: white;
+}
 
+.navhome {
+  text-decoration: none;
+  color: black;
+}
+
+.navhome:hover {
+  color:white 
+}
+
+.homevideogame {
+  width: 95%;
+  height: 14rem;
+  border-radius: 30px;
+  background: #ffffff;
+  box-shadow: 15px 15px 30px #bebebe,
+              -15px -15px 30px #ffffff;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+#divcentered {
+  display: flex;
+  margin-bottom: 60px;
+  justify-content: center;
+}

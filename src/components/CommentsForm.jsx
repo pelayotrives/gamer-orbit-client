@@ -5,7 +5,8 @@ import "../App.css"
 import { AuthContext } from '../context/auth.context';
 // import { commentsService, listGamesDetailsService, viewCommentsService } from '../services/games.services';
 
-
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 function CommentsForm (props) {
 
@@ -50,13 +51,13 @@ function CommentsForm (props) {
       { isLoggedIn === true &&
       <>
         <h4>Comments:</h4>
-        <form onSubmit={handleCommentSubmit}>
+        <Form className='container' onSubmit={handleCommentSubmit}>
           <br />
           {/* Metemos el atributo ref para borrar el comentario cuando hagamos submit. */}
-          <textarea name='comment' rows={10} cols={40} onChange={handleCommentsChange} ref={textareaRef}></textarea>
+          <Form.Control as="textarea" placeholder="Leave a comment here" name='comment' rows={5} cols={25} onChange={handleCommentsChange} ref={textareaRef} />
           <br /> <br />
-          <button type="submit">Submit</button>
-        </form>
+          <Button variant="outline-dark" className="register-btn" type="submit">Submit</Button>
+        </Form>
       </> }
       </div>
     )

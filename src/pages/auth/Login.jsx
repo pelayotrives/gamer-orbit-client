@@ -91,7 +91,9 @@ function Login() {
         {/* Si el mensaje de error no es nulo, es que se ha seteado como que algo pasa a lo largo del código, y se mostraría aquí. */}
         { errorMessage !== null && <p className="required-alert">{errorMessage}</p> }
 
+        <br />
         <Button variant="outline-dark" className="register-btn" type='submit'>Login</Button>
+        <br />
 
         <br />
 

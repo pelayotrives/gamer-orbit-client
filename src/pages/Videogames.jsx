@@ -51,21 +51,30 @@ function Videogames() {
 
   return (
     <div>
-      <br />
+
+      <br /><br />
       <h1>Find your favorite videogames!</h1>
       <br />
+      <p>Click the link to see more detailed information about each game!</p>
+      <br /><br />
       {allGames.results.map((eachGame) => {
         return (
-          <div key={eachGame.id}>
-            <img src={eachGame.background_image} width={300} alt="" />
-            <h3><Link to={`/videogames/${eachGame.id}/details`}>{eachGame.name}</Link></h3>
-            <h4>{eachGame.released}</h4>
-            <h5>{eachGame.rating}</h5>            
-            <hr />
+          <div key={eachGame.id} id="divcentered">
+              <div class="row row-cols-1 row-cols-md-4 g-2 homevideogame"> 
+                <div className="item"><img src={eachGame.background_image} width={250} alt="" /></div>
+                <br />
+                <div className="item"><h4><Link to={`/videogames/${eachGame.id}/details`}>{eachGame.name}</Link></h4></div>
+                <div className="item"><h6>Released in <strong>{eachGame.released}</strong></h6></div>
+                <div className="item"><h6>Current rating is <strong>{eachGame.rating}</strong></h6></div>
+            </div> 
+            <br /><br />    
           </div>
         );
+
       })}
+
     </div>
+      
   );
 }
 

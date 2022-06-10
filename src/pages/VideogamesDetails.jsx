@@ -17,6 +17,12 @@ import {Carousel} from "react-bootstrap";
 import ReactPlayer from "react-player"
 import "bootstrap/dist/css/bootstrap.css"
 
+//! Bootstrap
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Card from 'react-bootstrap/Card';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Table from 'react-bootstrap/Table';
 
 
 function VideogamesDetails() {
@@ -130,11 +136,12 @@ function VideogamesDetails() {
 
   return (
     <div>
-
       {/* {console.log("Información de trailer:", gameTrailer)} */}
 
       <div id="category">
-        <h1>{gameDetails.name} details</h1>
+        <br />
+        <h1>{gameDetails.name}</h1>
+        <br />
       </div>
 
       <div id="image-game">
@@ -149,152 +156,170 @@ function VideogamesDetails() {
 
       <div id="select-form">
         {/* Formulario para añadir el juego a colecciones (conexión con User.Model) */}
-        { isLoggedIn === true &&
-        <form onSubmit={handleSubmit}>
-          <br />
-          <select name="select" onChange={handleStatusChange}>
-            <option value={"isOwned"}>Owned games</option>
-            <option value={"isWished"}>Wished games</option>
-            <option value={"isFinished"}>Finished games</option>
-            <option value={"isPlaying"}>Currently playing games</option>
-          </select>
-          <br /> <br />
-          <button type="submit">Submit</button>
-        </form> }
+        {isLoggedIn === true && (
+          <Form onSubmit={handleSubmit}>
+            <br />
+            <br />
+            <Form.Select
+              aria-label="Default select example"
+              name="select"
+              className="container"
+              width="50px"
+              size="lg"
+              onChange={handleStatusChange}
+            >
+              <option disabled>Select your option</option>
+              <option value={"isOwned"}>Owned games</option>
+              <option value={"isWished"}>Wished games</option>
+              <option value={"isFinished"}>Finished games</option>
+              <option value={"isPlaying"}>Currently playing games</option>
+            </Form.Select>
+            <br /> <br />
+            <Button
+              variant="outline-dark"
+              className="register-btn"
+              type="submit"
+            >
+              Submit
+            </Button>
+          </Form>
+        )}
+        <br />
+        <br />
       </div>
 
-      <div id="star-component">
+      {/* <div id="star-component">
         <br />
         <StarRating />
-      </div>
+      </div> */}
 
-        {/* Nombre del juego */}
-
-      <div id="game-title"> 
-        <h2>{gameDetails.name}</h2>
-      </div>
-      
-      <div id="alternative-game-titles-head">
-        { gameDetails.alternative_names.length !== 0 &&
-            <>
-            <h3>Nombres alternativos:</h3>
-            </>
-        }
-      </div>
-
-      <div id="alternative-game-titles-content">
-        {/* Nombres alternativos del juego que vienen en array */}
-        {gameDetails.alternative_names.length !== 0 &&
-          gameDetails.alternative_names.map((eachTitle) => {
-            return (
-              <div>
-                <p>{eachTitle}</p>
-              </div>
-            );
-          })}
-      </div>
-
-      <div id="developer-content">
-        <h3>Desarrollador(es):</h3>
-        {/* Desarrolladores del juego (vienen en array.) */}
-        {gameDetails.publishers.length !== 0 &&
-          gameDetails.publishers.map((eachPublisher) => {
-            return (
-              <div>
-                <p>{eachPublisher.name}</p>
-              </div>
-            );
-          })}
-      </div>
-
-      <div id="release-date">
-        <h3>Fecha de salida:</h3>
-        {/* Fecha de release. */}
-        <p>{gameDetails.released}</p>
-
-        <h3>Género(s):</h3>
-        {/* Géneros del juego que vienen en array */}
-        {gameDetails.genres.length !== 0 &&
-          gameDetails.genres.map((eachGenre) => {
-            return (
-              <div>
-                <p>{eachGenre.name}</p>
-              </div>
-            );
-          })}
-      </div>
-
-      <div id="platforms">
-        <h3>Consola(s):</h3>
-        {/* Consolas en las que el juego está disponible (vienen en array de array) */}
-        {gameDetails.platforms.length !== 0 &&
-          gameDetails.platforms.map((eachPlatform) => {
-            return (
-              <div>
-                <p>{eachPlatform.platform.name}</p>
-              </div>
-            );
-          })}
-      </div>
-
-      <div id="game-website-button">
-        <button>
-          <a href={gameDetails.website}>Ir a website</a>
-        </button>
-      </div>
-
-      <div id="game-description">
-        <h3>Descripción:</h3>
-        {/* Descripción del juego */}
-        <Markup content={gameDetails.description} />
-      </div>
+      {/* Nombre del juego */}
 
 
-        {/* Trailers del juego (vienen en array) */}
 
-      <div id="game-trailer-title">
-        { gameTrailer.results.length !== 0 &&
-            <>
-              <h3>Trailers</h3>
-            </>
-        }
-      </div>
+
+
+
+      <Table striped  hover style={{ width: "83rem", margin: "0 auto" }}>
+
+        <tbody>
+        <tr>
+            <td><div id="game-title">
+              <h2 style={{ padding: "10px" }}>{gameDetails.name}</h2>
+            </div></td>
+          </tr>
+          <tr>
+            <td><div id="alternative-game-titles-head">
+              {gameDetails.alternative_names.length !== 0 && (
+                <>
+                  <h4>Alternative names</h4>
+                </>
+              )}
+            </div></td>
+          </tr>
+          <tr>
+            <td><div id="alternative-game-titles-content">
+              {/* Nombres alternativos del juego que vienen en array */}
+              {gameDetails.alternative_names.length !== 0 &&
+                gameDetails.alternative_names.map((eachTitle) => {
+                  return (
+                    <div>
+                      <p>{eachTitle}</p>
+                    </div>
+                  );
+                })}
+            </div></td>
+          </tr>
+          <tr>
+            <td><h4>Release date</h4>
+            </td>
+          </tr>
+          <tr>
+            <td>{/* Fecha de release. */}
+            <p>{gameDetails.released}</p></td>
+          </tr>
+          <tr>
+            <td>
+              <h4>Genre(s)</h4></td>
+          </tr>
+          <tr>
+            <td>
+              {gameDetails.genres.length !== 0 &&
+                gameDetails.genres.map((eachGenre) => {
+                  return (
+                    <div>
+                      <p>{eachGenre.name}</p>
+                    </div>
+                  );
+                })}</td>
+          </tr>
+          <tr>
+            <td><h4>Platform</h4></td>
+          </tr>
+          <tr>
+            <td><div id="platforms">
+              {/* Consolas en las que el juego está disponible (vienen en array de array) */}
+              {gameDetails.platforms.length !== 0 &&
+                gameDetails.platforms.map((eachPlatform) => {
+                  return (
+                    <div>
+                      <p>{eachPlatform.platform.name}</p>
+                    </div>
+                  );
+                })}
+            </div></td>
+          </tr>
+          <tr>
+            <td><h4>Description</h4></td>
+          </tr>
+          <tr>
+            <td style={{padding: "15px"}}><Markup content={gameDetails.description} /></td>
+          </tr>
+        </tbody>
+      </Table>
+
+      {/* Trailers del juego (vienen en array) */}
 
       <div className="App">
-      <Carousel>
-        {gameTrailer.results.length !== 0 &&
-          gameTrailer.results.map((eachTrailer) => {
-            return (
-              <Carousel.Item key={eachTrailer.id}>
-                <ReactPlayer
-                  url={eachTrailer.data.max}
-                  pip={true}
-                  controls={true}
-                  playing={false}
-                />
-                
-              </Carousel.Item>     
-          
-            );
-          })
-
-        }
+        <br /> <br />
+        <Carousel>
+          {gameTrailer.results.length !== 0 &&
+            gameTrailer.results.map((eachTrailer) => {
+              return (
+                <Carousel.Item key={eachTrailer.id}>
+                  <ReactPlayer
+                    url={eachTrailer.data.max}
+                    pip={true}
+                    controls={true}
+                    playing={false}
+                  />
+                </Carousel.Item>
+              );
+            })}
         </Carousel>
       </div>
 
-      {isLoggedIn === true &&
+      <div id="game-website-button">
+        <br /> <br />
+        <Button
+          variant="outline-dark"
+          id="button-website"
+          className="register-btn"
+        >
+          <a href={gameDetails.website}>Official website</a>
+        </Button>
+      </div>
 
-      <div id="comments-components">
- 
-
-          <Comments/>
+      {isLoggedIn === true && (
+        <div id="comments-components">
+          <Comments />
+          <br /><br />
 
           {/* ************************LTSU: PASO 2************************ */}
           {/* <CommentsForm addComment={addComment}/> */}
           {/* ************************LTSU: PASO 2************************ */}
-
-      </div>
-    }
+        </div>
+      )}
     </div>
   );
 }

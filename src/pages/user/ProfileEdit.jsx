@@ -4,6 +4,8 @@ import { listProfileService, profileEditService, uploadService } from '../../ser
 
 //! Boostrap
 import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Alert from 'react-bootstrap/Alert';
 
 function ProfileEdit() {
 
@@ -139,46 +141,63 @@ function ProfileEdit() {
   return (
 
     <div>
-    <h1>Editar perfil: </h1>
     <br />
-      <form onSubmit={handleEdit}>
+    <h1>Edit profile: </h1>
+    <br />
+      <Form className="container" onSubmit={handleEdit}>
 
         {/* <label htmlFor="avatar">Avatar: </label>
         <input type="file" name='avatar' value={avatar} onChange={handleAvatarEdit}/>
         <br /><br /> */}
 
-        <label htmlFor="city">Ciudad: </label>
-        <input type="text" name='city' value={city} onChange={handleCityEdit}/>
+        <Form.Group>
+          <Form.Label htmlFor="city">City: </Form.Label>
+          <Form.Control type="text" name='city' value={city} onChange={handleCityEdit} />
+        </Form.Group>
         <br /><br />
 
-        <label htmlFor="country">País: </label>
-        <input type="text" name='country' value={country} onChange={handleCountryEdit}/>
+        <Form.Group>
+          <Form.Label htmlFor="country">Country: </Form.Label>
+          <Form.Control type="text" name='country' value={country} onChange={handleCountryEdit}/>
+        </Form.Group>
         <br /><br />
 
-        <label htmlFor="address">Dirección: </label>
-        <input type="text" name='address' value={address} onChange={handleAddressEdit}/>
+        <Form.Group>
+          <Form.Label htmlFor="address">Address: </Form.Label>
+          <Form.Control type="text" name='address' value={address} onChange={handleAddressEdit}/>
+        </Form.Group>
         <br /><br />
 
-        <label htmlFor="birthdate">Cumpleaños: </label>
-        <input type="date" name='birthdate' value={birthday} onChange={handleBirthdayEdit}/>
+        <Form.Group>
+          <Form.Label htmlFor="birthdate">Birthday: </Form.Label>
+          <Form.Control type="date" name='birthdate' value={birthday} onChange={handleBirthdayEdit}/>
+        </Form.Group>
         <br /><br />
 
-        <label htmlFor="genre">Género: </label>
-        <input type="text" name='genre' value={genre} onChange={handleGenreEdit}/>
+        <Form.Group>
+          <Form.Label htmlFor="genre">Genre: </Form.Label>
+          <Form.Control type="text" name='genre' value={genre} onChange={handleGenreEdit}/>
+        </Form.Group>
         <br /><br />
 
-        <label htmlFor="aboutme">About me: </label>
-        <textarea name='aboutme' rows={10} cols={40} value={aboutme} onChange={handleAboutmeEdit}></textarea>
+        <Form.Group>
+          <Form.Label htmlFor="aboutme">About me: </Form.Label>
+          <Form.Control as="textarea" name='aboutme' rows={5} cols={40} value={aboutme} onChange={handleAboutmeEdit} />
+        </Form.Group>
         <br /><br />
 
-        <label htmlFor="image">Imagen</label>
-        <input type="file" name="image" onChange={handleImageChange} />
+        <Form.Group>
+          <Form.Label htmlFor="image">Picture</Form.Label>
+          <Form.Control type="file" name="image" onChange={handleImageChange} />
+        </Form.Group>
 
         <img src={avatar} alt="profile-pic" width={200}/>
+        
+        <br /><br />
 
-        <Button type='submit'>Editar</Button>
+        <Button variant="outline-dark" className="register-btn" type='submit'>Editar</Button>
 
-      </form>
+      </Form>
     </div>
 
   )
