@@ -308,6 +308,7 @@ function VideogamesDetails() {
         >
           <a href={gameDetails.website}>Official website</a>
         </Button>
+        <br/><br />
       </div>
 
       {isLoggedIn === true && (

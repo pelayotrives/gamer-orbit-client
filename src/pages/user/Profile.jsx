@@ -64,22 +64,25 @@ function Profile() {
 
   return (
     <div>
-      <div>
+      <div className='authCard'>
         <br />
         <h1>¡Welcome again!</h1>
         <br />
         <img src={user.avatar} alt="user pic" width={300} />
+        <br /><br />
+        <h6>Your username is <strong>{user.username}</strong></h6>
+        <h6>Your email is <strong>{user.email}</strong></h6>
+        <h6>City: <strong>{user.city}</strong></h6>
+        <h6>Country: <strong>{user.country}</strong></h6>
+        <h6>Genre: <strong>{user.genre}</strong></h6>
+        <h6>Address: <strong>{user.address}</strong></h6>
+        <h6>About me: <strong>{user.aboutme}</strong></h6>
         <br />
-        <h4>Your username is {user.username}</h4>
-        <h4>Your email is {user.email}</h4>
-        <h5>City: {user.city}</h5>
-        <h5>Country: {user.country}</h5>
-        <h5>Genre: {user.genre}</h5>
-        <h5>Address: {user.address}</h5>
-        <h5>About me: {user.aboutme}</h5>
-        <br />
-        <Button variant="outline-dark" id="register-margin-button" className="register-btn"><Link className='button-link' to={`/profile/${user._id}/edit`}> Edit profile </Link></Button>
-        <Button variant="outline-dark" className="register-btn" onClick={handleDelete}> Delete profile </Button>
+        <div className='welcome-buttons'>
+          <Button variant="outline-dark" id="register-margin-button" className="register-btn"><Link className='button-link' to={`/profile/${user._id}/edit`}> Edit profile </Link></Button>
+          <Button variant="outline-dark" className="register-btn" onClick={handleDelete}> Delete profile </Button>
+        </div>
+        <br/><br/>
       </div>
     </div>
   )

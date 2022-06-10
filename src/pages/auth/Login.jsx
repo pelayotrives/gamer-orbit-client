@@ -61,7 +61,7 @@ function Login() {
 
   return (
     <div>
-
+    <div className='authCard-login'>
       <br />
       <h1>Log In</h1>
       <br />
@@ -105,7 +105,7 @@ function Login() {
 
 
       </Form>
-      
+    </div>
     </div>
   );
 }

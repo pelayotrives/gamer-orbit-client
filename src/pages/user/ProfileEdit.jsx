@@ -196,7 +196,7 @@ function ProfileEdit() {
         <br /><br />
 
         <Button variant="outline-dark" className="register-btn" type='submit'>Editar</Button>
-
+        <br /> <br/>
       </Form>
     </div>
 

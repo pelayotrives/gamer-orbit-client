@@ -172,3 +172,57 @@
   margin-bottom: 60px;
   justify-content: center;
 }
+
+.authCard {
+
+  position:relative;
+  top: 15vh;
+  width: 35rem;
+  border-radius: 30px;
+  background: #ffffff;
+  box-shadow: 15px 15px 30px #bebebe,
+              -15px -15px 30px #ffffff;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.authCard-login {
+
+  position:relative;
+  top: 19vh;
+  width: 35rem;
+  border-radius: 30px;
+  background: #ffffff;
+  box-shadow: 15px 15px 30px #bebebe,
+              -15px -15px 30px #ffffff;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.welcome-buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+.collectiondiv {
+  width: 35rem;
+  border-radius: 30px;
+  background: #ffffff;
+  box-shadow: 15px 15px 30px #bebebe,
+              -15px -15px 30px #ffffff;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 auto;
+  margin-bottom: 35px;;
+}

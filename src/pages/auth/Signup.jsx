@@ -64,44 +64,46 @@ function Signup() {
 
   return (
     <div>
+        <div className='authCard'>
+          <br />  
+          <h1>Sign Up</h1>
+          <br />
 
-        <br />  
-        <h1>Sign Up</h1>
-        <br />
+          <Form className="container" onSubmit={handleSignUp}>
 
-        <Form className="container" onSubmit={handleSignUp}>
+            <Form.Group className="mb-3 text-style" controlId="formBasicUsername">
+              <Form.Label htmlFor="username">Username: </Form.Label>
+              <Form.Control type="text" name='username' value={username} onChange={handleUsername}/>
+            </Form.Group>  
 
-          <Form.Group className="mb-3 text-style" controlId="formBasicUsername">
-            <Form.Label htmlFor="username">Username: </Form.Label>
-            <Form.Control type="text" name='username' value={username} onChange={handleUsername}/>
-          </Form.Group>  
+            <Form.Group className="mb-3 text-style" controlId="formBasicEmail">
+              <Form.Label htmlFor="email">Email: </Form.Label>
+              <Form.Control type="email" name='email' value={email} onChange={handleEmail}/>
+            </Form.Group>
 
-          <Form.Group className="mb-3 text-style" controlId="formBasicEmail">
-            <Form.Label htmlFor="email">Email: </Form.Label>
-            <Form.Control type="email" name='email' value={email} onChange={handleEmail}/>
-          </Form.Group>
+            <Form.Group className="mb-3 text-style" controlId="formBasicPassword">
+              <Form.Label htmlFor="password">Password: </Form.Label>
+              <Form.Control type="password" name='password' value={password} onChange={handlePassword}/>
+            </Form.Group>
 
-          <Form.Group className="mb-3 text-style" controlId="formBasicPassword">
-            <Form.Label htmlFor="password">Password: </Form.Label>
-            <Form.Control type="password" name='password' value={password} onChange={handlePassword}/>
-          </Form.Group>
+            
+              {/* Si el mensaje de error no es nulo, es que se ha seteado como que algo pasa a lo largo del código, y se mostraría aquí. */}
+              { errorMessage !== null && <p className="required-alert">{errorMessage}</p>}
+            
 
-          
-            {/* Si el mensaje de error no es nulo, es que se ha seteado como que algo pasa a lo largo del código, y se mostraría aquí. */}
-            { errorMessage !== null && <p className="required-alert">{errorMessage}</p>}
-          
+              <br />
+              <Button variant="outline-dark" className="register-btn" type='submit'>Sign Up</Button>
+              <br />
 
-            <br />
-            <Button variant="outline-dark" className="register-btn" type='submit'>Sign Up</Button>
-            <br />
+              <br />
 
-            <br />
+            <Alert className="register-now-alert" variant={"secondary"}>
+              <Link className="register-now-alert" to={"/login"}>Already registered? Log in!</Link>
+            </Alert>
 
-          <Alert className="register-now-alert" variant={"secondary"}>
-            <Link className="register-now-alert" to={"/login"}>Already registered? Log in!</Link>
-          </Alert>
-
-        </Form>
+            <br/>
+          </Form>
+        </div>
     
     </div>
   )
