@@ -122,7 +122,7 @@ function ProfileEdit() {
 
   const handleImageChange = async (event) => {
 
-    console.log(event.target.files[0])
+    // -----------> console.log(event.target.files[0])
 
     // tipo de formulario que ya viene preparado para la transferencia de archivos
     const uploadForm = new FormData()

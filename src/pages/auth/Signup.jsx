@@ -18,17 +18,17 @@ function Signup() {
   const navigate = useNavigate()
 
   const handleUsername = (event) => {
-    console.log(event.target.value);
+    // -----------> console.log(event.target.value);
     setUsername(event.target.value)
   }
 
   const handleEmail = (event) => {
-    console.log(event.target.value);
+    // -----------> console.log(event.target.value);
     setEmail(event.target.value)
   }
 
   const handlePassword = (event) => {
-    console.log(event.target.value);
+    // -----------> console.log(event.target.value);
     setPassword(event.target.value)
   }
 
@@ -44,7 +44,7 @@ function Signup() {
     try {
       //! Esto sería como llamar a http://localhost:5005/api/auth/signup y pasarle el objeto usuario que acabamos de crear.
       await signupService(newUser)
-      console.log("Usuario registrado.");
+      // -----------> console.log("Usuario registrado.");
       navigate("/login")
     }
     catch (error) {

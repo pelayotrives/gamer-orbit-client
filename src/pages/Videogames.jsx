@@ -23,7 +23,7 @@ function Videogames() {
     try {
       //* 1.) Llamada a Axios
       const response = await listGamesService();
-      console.log(response);
+      // -----------> console.log(response);
 
       //* 2.) Actualizamos el estado con la respuesta de la API. En Axios, siempre es el "nombreDeLaConst.data".
       setAllGames(response.data);

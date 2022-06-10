@@ -43,7 +43,7 @@ function VideogamesDetails() {
 
   const handleStatusChange = (event) => {
     setStatus(event.target.value);
-    console.log(event.target.value);
+    // -----------> console.log(event.target.value);
   };
 
   const handleSubmit = async (event) => {
@@ -76,11 +76,11 @@ function VideogamesDetails() {
     try {
       // 1. Llamada a la API
       const response = await listGamesDetailsService(id);
-      console.log("Games Details", response.data);
+      // -----------> console.log("Games Details", response.data);
 
       // 2. Actualizamos el estado con la respuesta de la API.
       setGameDetails(response.data);
-      console.log("response.data", response.data);
+      // -----------> console.log("response.data", response.data);
     } catch (error) {
       navigate("/error");
     }
@@ -91,7 +91,7 @@ function VideogamesDetails() {
     try {
       const response = await listGamesTrailersService(id);
       setGameTrailers(response.data);
-      console.log("Trailers and bullshit:", response.data);
+      // -----------> console.log("Trailers and bullshit:", response.data);
     } catch (error) {
       navigate("/error");
     }

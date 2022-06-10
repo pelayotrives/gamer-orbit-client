@@ -25,7 +25,11 @@
   justify-content: center;
   flex-direction: column;
   margin: 0 auto;
+<<<<<<< HEAD
 } 
+=======
+}
+>>>>>>> 3078d9f0cd3c833ba160bee26e3163c32626c4b8
 
 .App-logo {
   height: 40vmin;

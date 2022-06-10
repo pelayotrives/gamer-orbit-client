@@ -34,7 +34,7 @@ function Comments() {
         );
     }
 
-    console.log(renderComments);
+    // console.log(renderComments);
 
     return (
         
