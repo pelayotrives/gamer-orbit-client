@@ -26,7 +26,7 @@ function Login() {
 
     const handlePassword = (event) => {
       // -----------> console.log(event.target.value);
-      // -----------> setPassword(event.target.value)
+      setPassword(event.target.value)
     }
 
 
